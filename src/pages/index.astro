@@ -1,15 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import {getCollection} from "astro:content";
+import FancyParagraph from "../components/FancyParagraph.astro";
 const allPosts = await getCollection("articles");
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
+		<h1 class="text-7xl">Welcome to <span class="text-gradient">Spellbook</span></h1>
 		<ul>
 			{
-				allPosts.map((post) => (<li>{post.data.title}</li>))
+				allPosts.map((post) => (<li><FancyParagraph><a href={"/articles/" + post.slug}>{post.data.title}</a></FancyParagraph></li>))
 			}
 		</ul>
 	</main>
