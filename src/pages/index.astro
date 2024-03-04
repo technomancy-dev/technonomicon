@@ -1,9 +1,16 @@
 ---
+import matter from "gray-matter";
 import Layout from '../layouts/Layout.astro';
 import {getCollection} from "astro:content";
 import FancyParagraph from "../components/FancyParagraph.astro";
 const allPosts = await getCollection("articles");
-console.log({allPosts})
+const firstXCharacters= (chars) => (file)  => {
+	return file.excerpt = file.content.slice(0, 200);
+}
+
+const first200Chars = firstXCharacters(200)
+
+const file = matter(allPosts[0].body, { excerpt: first200Chars })
 ---
 
 <Layout title="Welcome to Astro.">
@@ -15,7 +22,7 @@ console.log({allPosts})
 				allPosts.map((post) => (
 					<li>
 						<FancyParagraph>
-							<a href={"/articles/" + post.slug}>{post.data.title}</a>
+							<a href={"/articles/" + post.slug}>{post.data.title} {file.excerpt}</a>
 						</FancyParagraph>
 					</li>
 				))
