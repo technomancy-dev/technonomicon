@@ -61,13 +61,13 @@ const month = new Intl.DateTimeFormat("en-US", optionsMonth).format(today);
       <p>The book of the devs. — A print inspired digital garden 🌱🍄🌿</p>
     </a>
     {
-      issue && (
+      (
         <div>
           <p class="flex items-end gap-2">
             <>
               <span class="block pb-2">issue no.</span>
               <span class="font-lithops align-text-baseline text-8xl">
-                {romanize(issue)}
+                {issue ? romanize(issue) : "!?"}
               </span>
             </>
           </p>
