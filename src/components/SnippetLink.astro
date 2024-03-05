@@ -1,11 +1,11 @@
 ---
 import ArticleSnippet from "./ArticleSnippet.astro";
-const { title, class: className, paragraphClass } = Astro.props;
+const { title, class: className, paragraphClass, href } = Astro.props;
 ---
 
 <a
   class:list={[className, "hover:scale-105 transition-all ease-in-out"]}
-  href="#"
+  href={href ?? "#"}
 >
   <ArticleSnippet title={title} paragraphClass="first-line:text-blue-700">
     <slot />
