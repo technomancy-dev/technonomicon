@@ -1,45 +1,8 @@
 ---
 const { issue } = Astro.props;
-const romanize = (num) => {
-  if (isNaN(num)) return NaN;
-  var digits = String(+num).split(""),
-    key = [
-      "",
-      "C",
-      "CC",
-      "CCC",
-      "CD",
-      "D",
-      "DC",
-      "DCC",
-      "DCCC",
-      "CM",
-      "",
-      "X",
-      "XX",
-      "XXX",
-      "XL",
-      "L",
-      "LX",
-      "LXX",
-      "LXXX",
-      "XC",
-      "",
-      "I",
-      "II",
-      "III",
-      "IV",
-      "V",
-      "VI",
-      "VII",
-      "VIII",
-      "IX",
-    ],
-    roman = "",
-    i = 3;
-  while (i--) roman = (key[+digits.pop() + i * 10] || "") + roman;
-  return Array(+digits.join("") + 1).join("M") + roman;
-};
+import Mushroom from "./Mushroom.astro";
+import Bug from "./Bug.astro";
+import romanize from "../utils/romanize";
 
 const options = { weekday: "long" };
 const optionsMonth = { month: "long" };
@@ -58,7 +21,11 @@ const month = new Intl.DateTimeFormat("en-US", optionsMonth).format(today);
   <div class="flex justify-between">
     <a href="/">
       <h1 class="text-7xl"><span>technonomicon</span></h1>
-      <p>The book of the devs. — A print inspired digital garden 🌱🍄🌿</p>
+      <p>
+        The book of the devs. — A print inspired digital garden <span
+          class="inline-flex items-center"><Mushroom /><Bug /></span
+        >
+      </p>
     </a>
     {
       (
@@ -77,19 +44,17 @@ const month = new Intl.DateTimeFormat("en-US", optionsMonth).format(today);
   </div>
   <div class="relative flex items-center justify-between w-full mb-16">
     <div class="absolute inset-0 flex items-center" aria-hidden="true">
-      <div class="w-full border-t border-gray-300"></div>
+      <div class="w-full border-t border-base-content"></div>
     </div>
     <div class="relative flex justify-start">
-      <span
-        class="bg-white pr-3 text-base font-semibold leading-6 text-gray-900"
-      >
+      <span class="bg-base-100 pr-3 text-base font-semibold leading-6">
         {day}—{month}, {date}, {year}
       </span>
     </div>
     <div class="relative flex">
       <a
         href="/issues/1"
-        class="bg-white pl-3 text-base font-semibold leading-6 text-gray-900"
+        class="bg-base-100 pl-3 text-base font-semibold leading-6"
       >
         All Issues
       </a>

@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import romanize from "../../utils/romanize";
 
 export async function getStaticPaths({paginate}) {
   const blogEntries = await getCollection("issues");
@@ -15,47 +16,6 @@ const IssueContents = await Promise.all(
   allIssues.map((issue) => issue.render())
 );
 
-
-const romanize = (num) => {
-  if (isNaN(num)) return NaN;
-  var digits = String(+num).split(""),
-    key = [
-      "",
-      "C",
-      "CC",
-      "CCC",
-      "CD",
-      "D",
-      "DC",
-      "DCC",
-      "DCCC",
-      "CM",
-      "",
-      "X",
-      "XX",
-      "XXX",
-      "XL",
-      "L",
-      "LX",
-      "LXX",
-      "LXXX",
-      "XC",
-      "",
-      "I",
-      "II",
-      "III",
-      "IV",
-      "V",
-      "VI",
-      "VII",
-      "VIII",
-      "IX",
-    ],
-    roman = "",
-    i = 3;
-  while (i--) roman = (key[+digits.pop() + i * 10] || "") + roman;
-  return Array(+digits.join("") + 1).join("M") + roman;
-};
 const arrayRange = (start, stop, step) =>
     Array.from(
     { length: (stop - start) / step + 1 },
