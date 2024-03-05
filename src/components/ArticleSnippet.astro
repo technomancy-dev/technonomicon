@@ -1,11 +1,11 @@
 ---
 import FancyParagraph from "./FancyParagraph.astro";
-const { title, class: className } = Astro.props;
+const { title, class: className, paragraphClass } = Astro.props;
 ---
 
 <div class={className}>
   <h4 class="mb-6 font-display text-3xl text-blue-700">{title}</h4>
-  <FancyParagraph>
+  <FancyParagraph class={paragraphClass}>
     <slot />
   </FancyParagraph>
 </div>
