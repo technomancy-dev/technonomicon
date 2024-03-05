@@ -1,15 +1,21 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-const allIssues = (await getCollection("issues")).sort(
-  (a, b) => b.data.issue_number - a.data.issue_number
-);
-const finalIssue = allIssues[allIssues.length - 1];
-const issueContents = await Promise.all(
+
+export async function getStaticPaths({paginate}) {
+  const blogEntries = await getCollection("issues");
+  return paginate(blogEntries, {pageSize: 3})
+
+}
+
+const { page } = Astro.props;
+
+const allIssues = page.data
+const IssueContents = await Promise.all(
   allIssues.map((issue) => issue.render())
 );
-const { Content } = await finalIssue.render();
-console.log({ Content });
+
+
 const romanize = (num) => {
   if (isNaN(num)) return NaN;
   var digits = String(+num).split(""),
@@ -50,15 +56,32 @@ const romanize = (num) => {
   while (i--) roman = (key[+digits.pop() + i * 10] || "") + roman;
   return Array(+digits.join("") + 1).join("M") + roman;
 };
+const arrayRange = (start, stop, step) =>
+    Array.from(
+    { length: (stop - start) / step + 1 },
+    (value, index) => start + index * step
+    );
+
+
+const pageRange = arrayRange(1, page.lastPage, 1)
+console.log(pageRange)
 ---
 
 <Layout>
   <div class="px-10">
-    <h1 class="text-7xl mb-2">All issues</h1>
+    <div class="flex items-center justify-between">
+      <h1 class="text-7xl mb-2">All issues</h1>
+      <div>
+        <a>Previous set</a>
+        {pageRange.map(page => <a class="p-2" href={`/issues/${page}`}>{page}</a>)}
+        <a>Next set</a>
+      </div>
+      
+    </div>
     <div class="relative pb-10">
       {
         allIssues.map((issue,index) => (
-          <div class="group border-t z-20 overflow-hidden last:border-b border-l rounded-t-md shadow-[rgba(0,0,0,0.05)_0px_-2px_4px_0px] border-r">
+          <div class="group border-t z-20 overflow-hidden last:border-b border-l rounded-t-sm shadow-[rgba(0,0,0,0.05)_0px_-2px_4px_0px] border-r">
             <a class="flex flex-col p-10" href={`/issues/${issue.slug}`}>
               <div class="flex w-full justify-between items-center text-4xl">
                 <span class="max-w-2xl">{issue.data.title}</span>{" "}
@@ -68,10 +91,10 @@ const romanize = (num) => {
               </div>
             </a>
             <div class="block z-10 max-h-0 group-last:hidden group-hover:max-h-[50px] duration-1000 transition-all ease-in-out">
-              <issueContents[index].Content/>
+              <IssueContents[index].Content/>
             </div>
             <div class="z-10 hidden group-last:block">
-              <issueContents[index].Content/>
+              <IssueContents[index].Content/>
             </div>
           </div>
         ))

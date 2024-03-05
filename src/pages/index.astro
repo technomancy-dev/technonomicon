@@ -1,19 +1,12 @@
 ---
 import matter from "gray-matter";
 import Layout from "../layouts/Layout.astro";
-import { getCollection, getEntry } from "astro:content";
-import ArticleSnippet from "../components/ArticleSnippet.astro";
-// const allPosts = await getCollection("articles");
-// const firstXCharacters = (chars) => (file) => {
-//   return (file.excerpt = file.content.slice(0, chars));
-// };
-
-// const first200Chars = firstXCharacters(300);
+import { getEntry } from "astro:content";
 
 const entry = await getEntry("issues", "the-one-about-ai");
 const { Content, headings } = await entry.render();
 ---
 
-<Layout>
+<Layout frontmatter={entry.data}>
   <Content />
 </Layout>
