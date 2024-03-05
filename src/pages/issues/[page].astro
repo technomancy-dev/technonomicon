@@ -71,12 +71,12 @@ console.log(pageRange)
   <div class="px-10">
     <div class="flex items-center justify-between">
       <h1 class="text-7xl mb-2">All issues</h1>
-      <div>
-        <a>Previous set</a>
-        {pageRange.map(page => <a class="p-2" href={`/issues/${page}`}>{page}</a>)}
-        <a>Next set</a>
+
+      <div class="join">
+        {page.url.prev ? <a href={page.url.prev} class="join-item btn">«</a> : null}
+        <a class="join-item btn">Page {page.currentPage}</a>
+        {page.url.next ? <a href={page.url.next} class="join-item btn">»</a> : null}
       </div>
-      
     </div>
     <div class="relative pb-10">
       {
