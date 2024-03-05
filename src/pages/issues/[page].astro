@@ -4,7 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths({paginate}) {
   const blogEntries = await getCollection("issues");
-  return paginate(blogEntries, {pageSize: 3})
+  return paginate(blogEntries.sort((a,b) => b.data.issue_number - a.data.issue_number), {pageSize: 3})
 
 }
 
