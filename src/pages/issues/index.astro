@@ -1,15 +1,81 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-const allIssues = await getCollection("issues");
-console.log(allIssues);
+const allIssues = (await getCollection("issues")).sort(
+  (a, b) => b.data.issue_number - a.data.issue_number
+);
+const finalIssue = allIssues[allIssues.length - 1];
+const issueContents = await Promise.all(
+  allIssues.map((issue) => issue.render())
+);
+const { Content } = await finalIssue.render();
+console.log({ Content });
+const romanize = (num) => {
+  if (isNaN(num)) return NaN;
+  var digits = String(+num).split(""),
+    key = [
+      "",
+      "C",
+      "CC",
+      "CCC",
+      "CD",
+      "D",
+      "DC",
+      "DCC",
+      "DCCC",
+      "CM",
+      "",
+      "X",
+      "XX",
+      "XXX",
+      "XL",
+      "L",
+      "LX",
+      "LXX",
+      "LXXX",
+      "XC",
+      "",
+      "I",
+      "II",
+      "III",
+      "IV",
+      "V",
+      "VI",
+      "VII",
+      "VIII",
+      "IX",
+    ],
+    roman = "",
+    i = 3;
+  while (i--) roman = (key[+digits.pop() + i * 10] || "") + roman;
+  return Array(+digits.join("") + 1).join("M") + roman;
+};
 ---
 
 <Layout>
-  <h1>All issues</h1>
-  {
-    allIssues.map((issue) => (
-      <a href={`/issues/${issue.slug}`}>{issue.data.title}</a>
-    ))
-  }
+  <div class="px-10">
+    <h1 class="text-7xl mb-2">All issues</h1>
+    <div class="relative pb-10">
+      {
+        allIssues.map((issue,index) => (
+          <div class="group border-t z-20 overflow-hidden last:border-b border-l rounded-t-md shadow-[rgba(0,0,0,0.05)_0px_-2px_4px_0px] border-r">
+            <a class="flex flex-col p-10" href={`/issues/${issue.slug}`}>
+              <div class="flex w-full justify-between items-center text-4xl">
+                <span class="max-w-2xl">{issue.data.title}</span>{" "}
+                <span class="font-lithops text-8xl">
+                  {romanize(issue.data.issue_number)}
+                </span>
+              </div>
+            </a>
+            <div class="block z-10 max-h-0 group-last:hidden group-hover:max-h-[50px] duration-1000 transition-all ease-in-out">
+              <issueContents[index].Content/>
+            </div>
+            <div class="z-10 hidden group-last:block">
+              <issueContents[index].Content/>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
 </Layout>

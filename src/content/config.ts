@@ -6,6 +6,7 @@ const articlesCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    issue_number: z.number(),
   }),
 });
 const issuesCollection = defineCollection({
@@ -13,6 +14,7 @@ const issuesCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    issue_number: z.number(),
   }),
 });
 // Export a single `collections` object to register your collection(s)
