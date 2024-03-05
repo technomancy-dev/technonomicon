@@ -1,0 +1,18 @@
+---
+layout: ../../layouts/Layout.astro
+---
+
+import { getCollection, getEntry } from "astro:content";
+import ArticleSnippet from "../../components/ArticleSnippet.astro";
+export const technonomicon = await getEntry("articles", "technonomicon");
+export const allPosts = await getCollection("articles");
+
+<div class="grid grid-cols-12 gap-16 px-10">
+<ArticleSnippet class="col-span-6" title={technonomicon.data.title}>
+    {technonomicon.body}
+</ArticleSnippet>
+
+<ArticleSnippet class="col-span-6"  title={technonomicon.data.title}>
+    {technonomicon.body}
+</ArticleSnippet>
+</div>
