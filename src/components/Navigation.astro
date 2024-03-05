@@ -1,12 +1,98 @@
 ---
+const { issue } = Astro.props;
+const romanize = (num) => {
+  if (isNaN(num)) return NaN;
+  var digits = String(+num).split(""),
+    key = [
+      "",
+      "C",
+      "CC",
+      "CCC",
+      "CD",
+      "D",
+      "DC",
+      "DCC",
+      "DCCC",
+      "CM",
+      "",
+      "X",
+      "XX",
+      "XXX",
+      "XL",
+      "L",
+      "LX",
+      "LXX",
+      "LXXX",
+      "XC",
+      "",
+      "I",
+      "II",
+      "III",
+      "IV",
+      "V",
+      "VI",
+      "VII",
+      "VIII",
+      "IX",
+    ],
+    roman = "",
+    i = 3;
+  while (i--) roman = (key[+digits.pop() + i * 10] || "") + roman;
+  return Array(+digits.join("") + 1).join("M") + roman;
+};
 
+const options = { weekday: "long" };
+const optionsMonth = { month: "long" };
+
+const today = new Date();
+const dayNum = today.getDay();
+
+const monthNum = today.getMonth();
+const date = today.getDate();
+const year = today.getFullYear();
+const day = new Intl.DateTimeFormat("en-US", options).format(today);
+const month = new Intl.DateTimeFormat("en-US", optionsMonth).format(today);
 ---
 
 <nav class="px-10">
-  <a href="/">
-    <h1 class="text-7xl"><span>technonomicon</span></h1>
-    <p class="mb-16">
-      The book of the devs. — A print inspired digital garden 🌱🍄🌿
-    </p>
-  </a>
+  <div class="flex justify-between">
+    <a href="/">
+      <h1 class="text-7xl"><span>technonomicon</span></h1>
+      <p>The book of the devs. — A print inspired digital garden 🌱🍄🌿</p>
+    </a>
+    {
+      issue && (
+        <div>
+          <p class="flex items-end gap-2">
+            <>
+              <span class="block pb-2">issue no.</span>
+              <span class="font-lithops align-text-baseline text-8xl">
+                {romanize(issue)}
+              </span>
+            </>
+          </p>
+        </div>
+      )
+    }
+  </div>
+  <div class="relative flex items-center justify-between w-full mb-16">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-300"></div>
+    </div>
+    <div class="relative flex justify-start">
+      <span
+        class="bg-white pr-3 text-base font-semibold leading-6 text-gray-900"
+      >
+        {day}—{month}, {date}, {year}
+      </span>
+    </div>
+    <div class="relative flex">
+      <a
+        href="/issues"
+        class="bg-white pl-3 text-base font-semibold leading-6 text-gray-900"
+      >
+        All Issues
+      </a>
+    </div>
+  </div>
 </nav>

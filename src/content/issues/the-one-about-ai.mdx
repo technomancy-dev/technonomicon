@@ -2,23 +2,23 @@
 title: The one about AI.
 description: Robots are fucking us.
 layout: "../../layouts/Layout.astro"
+issue_number: 1
 ---
+
 import { getEntry } from "astro:content";
 import SnippetLink from "../../components/SnippetLink.astro";
 export const technonomicon = await getEntry("articles", "technonomicon");
 
-<Layout>
-  <div class="grid grid-cols-12 gap-16 px-10">
+<div class="grid grid-cols-12 gap-16 px-10">
     <SnippetLink class="col-span-4 row-span-2" title={technonomicon.data.title}>
-      {technonomicon.body}
+        {technonomicon.body}
     </SnippetLink>
 
     <SnippetLink class="col-span-8" title={technonomicon.data.title}>
-      {technonomicon.body}
+        {technonomicon.body}
     </SnippetLink>
 
     <SnippetLink class="col-span-8" title={technonomicon.data.title}>
-      {technonomicon.body}
+        {technonomicon.body}
     </SnippetLink>
-  </div>
-</Layout>
+</div>

@@ -1,46 +1,17 @@
 ---
 import matter from "gray-matter";
-import Layout from '../layouts/Layout.astro';
-import {getCollection} from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import { getCollection, getEntry } from "astro:content";
 import ArticleSnippet from "../components/ArticleSnippet.astro";
-const allPosts = await getCollection("articles");
-const firstXCharacters= (chars) => (file)  => {
-	return file.excerpt = file.content.slice(0, chars);
-}
+// const allPosts = await getCollection("articles");
+// const firstXCharacters = (chars) => (file) => {
+//   return (file.excerpt = file.content.slice(0, chars));
+// };
 
-const first200Chars = firstXCharacters(300)
+// const first200Chars = firstXCharacters(300);
+
+const entry = await getEntry("issues", "the-one-about-ai");
+const { Content, headings } = await entry.render();
 ---
 
-<Layout title="Welcome to Astro.">
-	<main class="px-10">
-		<div class="flex flex-col gap-16">
-			<ul class="grid grid-cols-12 gap-16">
-				{
-					allPosts.map((post) => (
-						<li class="col-span-4">
-							<a href={"/articles/" + post.slug}>
-								<ArticleSnippet title={post.data.title}>
-									{matter(post.body, { excerpt: first200Chars }).excerpt}
-								</ArticleSnippet>
-							</a>
-						</li>
-					))
-				}
-			</ul>
-			<ul class="grid grid-cols-12 gap-10">
-				{
-					allPosts.map((post) => (
-						<li class="col-span-6">
-							<a href={"/articles/" + post.slug}>
-								<ArticleSnippet title={post.data.title}>
-									{matter(post.body, { excerpt: first200Chars }).excerpt}
-								</ArticleSnippet>
-							</a>
-						</li>
-					))
-				}
-			</ul>
-		</div>
-	</main>
-</Layout>
-
+<Content />
