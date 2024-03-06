@@ -6,36 +6,44 @@ issue_number: 1
 
 import { getEntry } from "astro:content";
 import SnippetLink from "../../components/SnippetLink.astro";
+import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
 import Title from "../../components/Title.astro";
 import Code from "../../components/Code.astro";
 import matter from "gray-matter"
 import grabExcerpt, { lines5 } from "../../utils/grabExcerpt.ts"
+
 export const technonomicon = await getEntry("articles", "what-is-the-technonomicon");
+export const quick_install = await getEntry("articles", "quick-install");
 export const okButWhatTechnonomicon = await getEntry("articles", "ok-but-what-is-the-technonomicon");
 export const components = { pre: Code }
+export const techRender = await technonomicon.render()
+export const quickRender = await quick_install.render()
 
 
-
+{/* {console.log(technonomicon.body)} */}
 <div class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify">
-  <Title class="col-span-12 lg:col-span-6 xl:col-span-8 text-4xl lg:text-6xl text-left xl:text-8xl" title = { frontmatter.title } />
-  <SnippetLink
+  <MarkdownSnippet
+    markdown={technonomicon}
+    components={components}
     href={ `/articles/${technonomicon.slug}` }
-    class="lg:col-span-6 xl:col-span-4 col-span-12"
+    class="lg:col-span-6 xl:col-span-4 row-span-2 col-span-12"
+    cta="Read more about why I made this."
     title = { technonomicon.data.title }
   >
-    {/* TODO: a better solution to avoid magic excerpt numbers would be nice. Maybe in frontmatter of the article so its with that at least. */}
-    { matter(technonomicon.body, { excerpt: lines5 }).excerpt}
-  </SnippetLink>
-  
+  </MarkdownSnippet>
+  <Title class="col-span-12 lg:col-span-6 xl:col-span-8 text-4xl lg:text-6xl text-left xl:text-8xl" title = { frontmatter.title } />
+
+  <MarkdownSnippet
+    markdown={quick_install}
+    components={components}
+    href={ `/articles/${quick_install.slug}` }
+    class="lg:col-span-6 xl:col-span-4 row-span-2 col-span-12"
+    cta="Read more about why I made this."
+    title = { quick_install.data.title }
+  >
+  </MarkdownSnippet>
   <div class="col-span-12 order-4 lg:col-span-8 prose max-w-full">
     
-    __Start it up like any other Astro theme.__
-
-    ```javascript
-    npm create astro@latest -- --template technomancy-dev/technonomicon
-    ```
-
-    After that you can open up `pages/index.astro` where you will see we are using `collections` to get an `issue`. Issues are the basic building blocks of a technonomicon. They can be treated like pages in a textbook or issues of a newspaper, but we will get into that later. For now just open up the file for the issue and glance through it. 
   </div>
 
   <Title class="col-span-12 order-3 text-4xl lg:text-6xl lg:col-span-4 text-justify" title={"So how the hell do I use this thing??"}/>
@@ -45,20 +53,4 @@ export const components = { pre: Code }
   <div class="col-span-12 lg:col-span-4 order-6">
     You can think of them like issues of newspapers. You might get a small taste of some content that can lead you to turning the page to something else. That somewhere else can be on this site, or off it. If you have to fit it into a mental model for the web, thing about how blogs have tags, and a tag page might link to many articles. 
   </div>
-  
-
-  {/* <div class="col-span-12">
-
-  <SnippetLink target="_blank" href="https://www.lipsum.com/">
-    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC,
-    making it over 2000 years old. Richard McClintock, a Latin
-    professor at Hampden-Sydney College in Virginia, looked up one of
-    the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going
-    through the cites of the word in classical literature, discovered the undoubtable source.
-    Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-    (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
-    very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..",
-    comes from a line in section 1.10.32.
-  </SnippetLink>
-  </div> */}
 </div>

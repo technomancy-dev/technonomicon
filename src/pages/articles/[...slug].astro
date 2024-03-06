@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import Code from "../../components/Code.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("articles");
@@ -15,5 +16,7 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={entry.data.title} frontmatter={entry.data}>
-  <Content />
+  <div class="px-2 md:px-10">
+    <Content components={{ pre: Code }} />
+  </div>
 </Layout>
