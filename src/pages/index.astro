@@ -3,7 +3,7 @@ import matter from "gray-matter";
 import Layout from "../layouts/Layout.astro";
 import { getEntry } from "astro:content";
 
-const entry = await getEntry("issues", "the-one-about-ai");
+const entry = await getEntry("issues", "introduction-to-the-technonomicon");
 const { Content, headings } = await entry.render();
 ---
 

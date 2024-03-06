@@ -33,7 +33,10 @@ const month = new Intl.DateTimeFormat("en-US", optionsMonth).format(today);
           <p class="flex items-end gap-2">
             <>
               <span class="block pb-2">issue no.</span>
-              <span class="font-lithops align-text-baseline text-8xl">
+              <span
+                transition:name={`issue_number_${issue}`}
+                class="font-lithops align-text-baseline text-8xl"
+              >
                 {issue ? romanize(issue) : "!?"}
               </span>
             </>

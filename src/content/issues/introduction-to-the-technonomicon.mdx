@@ -7,6 +7,7 @@ issue_number: 1
 
 import { getEntry } from "astro:content";
 import SnippetLink from "../../components/SnippetLink.astro";
+import Title from "../../components/Title.astro";
 export const technonomicon = await getEntry("articles", "technonomicon");
 
 
@@ -19,15 +20,5 @@ export const technonomicon = await getEntry("articles", "technonomicon");
   >
     {technonomicon.body}
   </SnippetLink>
-  <h1 class="text-6xl col-span-8 text-left">{frontmatter.title}</h1>
-  <SnippetLink class="col-span-8" title={technonomicon.data.title}>
-    {technonomicon.body}
-  </SnippetLink>
-  <SnippetLink class="col-span-8" title={technonomicon.data.title}>
-    {technonomicon.body}
-  </SnippetLink>
-  <SnippetLink class="col-span-4 row-span-2" title={technonomicon.data.title}>
-    {technonomicon.body}
-  </SnippetLink>
-  <h2 class="text-6xl col-span-8 text-left">{frontmatter.title}</h2>
+  <Title title={frontmatter.title}/>
 </div>
