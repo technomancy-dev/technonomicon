@@ -15,7 +15,7 @@ import grabExcerpt, { lines5 } from "../../utils/grabExcerpt.ts"
 export const technonomicon = await getEntry("articles", "what-is-the-technonomicon");
 export const quick_install = await getEntry("articles", "quick-install");
 export const okButWhatTechnonomicon = await getEntry("articles", "ok-but-what-is-the-technonomicon");
-export const components = { pre: Code, Title }
+export const components = { Title}
 export const techRender = await technonomicon.render()
 export const quickRender = await quick_install.render()
 
@@ -25,27 +25,23 @@ export const quickRender = await quick_install.render()
 
   <MarkdownSnippet
     markdown={quick_install}
-    components={components}
+    components={{...components, h1: (props)=> <h2{...props}/>,  a: (props) => <p{...props}/> }}
     href={ `/articles/${quick_install.slug}` }
-    class="lg:col-span-6 xl:col-span-8 prose prose-xl col-span-12"
+    class="lg:col-span-6 xl:col-span-8 prose-xl col-span-12"
     cta="Read more about why I made this."
     title = { quick_install.data.title }
   >
   </MarkdownSnippet>
   <MarkdownSnippet
     markdown={technonomicon}
-    components={components}
+    components={{...components, h1: (props)=> <h2{...props}/>,  a: (props) => <p{...props}/> }}
     href={ `/articles/${technonomicon.slug}` }
-    class="lg:col-span-8 xl:col-span-4 prose prose-xl row-span-2 col-span-12"
+    class="lg:col-span-8 xl:col-span-4 prose-xl row-span-2 col-span-12"
     cta="Read more about why I made this."
     title = { technonomicon.data.title }
   >
   </MarkdownSnippet>
-  {/* <Title class="col-span-12 order-3 text-4xl lg:text-6xl lg:col-span-4 text-justify" title={"So how the hell do I use this thing??"}/>
-
-  <Title class="col-span-12 lg:col-span-8 order-5 text-4xl lg:text-6xl" title={"Issues are collections of things."}/> */}
-
   <div class="col-span-12 lg:col-span-8 order-6">
-    You can think of them like issues of newspapers. You might get a small taste of some content that can lead you to turning the page to something else. That somewhere else can be on this site, or off it. If you have to fit it into a mental model for the web, thing about how blogs have tags, and a tag page might link to many articles. 
+  
   </div>
 </div>

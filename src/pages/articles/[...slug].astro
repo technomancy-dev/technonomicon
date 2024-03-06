@@ -21,11 +21,11 @@ console.log(headings);
   <div class="grid grid-cols-12">
     <div
       transition:name={entry.data.title}
-      class="px-2 col-span-6 prose prose-xl md:px-10"
+      class="px-2 col-span-8 prose-xl md:px-10"
     >
-      <Content components={{ pre: Code }} />
+      <Content />
     </div>
-    <div class="text-primary col-span-6">
+    <div class="text-primary col-span-4">
       <TableOfContents headings={headings} />
     </div>
   </div>
