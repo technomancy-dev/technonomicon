@@ -28,9 +28,9 @@ console.log(pageRange)
 ---
 
 <Layout>
-  <div class="px-10">
-    <div class="flex items-center justify-between">
-      <h1 class="text-7xl mb-2">All issues</h1>
+  <div class="md:px-10">
+    <div class="flex items-center py-2 justify-between">
+      <h1 class="lg:text-7xl px-2 md:px-0 mb-2">All issues</h1>
 
       <div class="join">
         {page.url.prev ? <a href={page.url.prev} class="join-item btn">«</a> : null}
@@ -42,8 +42,8 @@ console.log(pageRange)
       {
         allIssues.map((issue,index) => (
           <div class="group border-t z-20 overflow-hidden last:border-b border-l rounded-t-sm shadow-[rgba(0,0,0,0.05)_0px_-2px_4px_0px] border-r">
-            <a class="flex flex-col p-10" href={`/issues/${issue.slug}`}>
-              <div class="flex w-full justify-between items-center text-4xl">
+            <a class="flex flex-col px-2 md:p-10" href={`/issues/${issue.slug}`}>
+              <div class="flex w-full justify-between items-center lg:text-4xl">
                 <span class="max-w-2xl">{issue.data.title}</span>{" "}
                 <span transition:animate="slide" transition:name={`issue_number_${issue.data.issue_number}`} class="font-lithops text-8xl">
                   {romanize(issue.data.issue_number)}

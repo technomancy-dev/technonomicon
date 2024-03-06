@@ -16,18 +16,18 @@ export const components = { pre: Code }
 
 
 
-<div class="grid grid-cols-12 gap-16 px-10 text-justify" >
-<Title class="col-span-8 text-8xl" title = { frontmatter.title } />
+<div class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify">
+  <Title class="col-span-12 lg:col-span-6 xl:col-span-8 text-4xl lg:text-6xl text-left xl:text-8xl" title = { frontmatter.title } />
   <SnippetLink
     href={ `/articles/${technonomicon.slug}` }
-  class="col-span-4"
-  title = { technonomicon.data.title }
-    >
-  {/* TODO: a better solution to avoid magic excerpt numbers would be nice. Maybe in frontmatter of the article so its with that at least. */}
+    class="lg:col-span-6 xl:col-span-4 col-span-12"
+    title = { technonomicon.data.title }
+  >
+    {/* TODO: a better solution to avoid magic excerpt numbers would be nice. Maybe in frontmatter of the article so its with that at least. */}
     { matter(technonomicon.body, { excerpt: lines5 }).excerpt}
   </SnippetLink>
   
-  <div class="col-span-8 prose max-w-full">
+  <div class="col-span-12 order-4 lg:col-span-8 prose max-w-full">
     
     __Start it up like any other Astro theme.__
 
@@ -38,11 +38,11 @@ export const components = { pre: Code }
     After that you can open up `pages/index.astro` where you will see we are using `collections` to get an `issue`. Issues are the basic building blocks of a technonomicon. They can be treated like pages in a textbook or issues of a newspaper, but we will get into that later. For now just open up the file for the issue and glance through it. 
   </div>
 
-  <Title class="col-span-4 text-7xl text-justify" title={"So how the hell do I use this thing??"}/>
+  <Title class="col-span-12 order-3 text-4xl lg:text-6xl lg:col-span-4 text-justify" title={"So how the hell do I use this thing??"}/>
 
-  <Title class="col-span-8 text-7xl" title={"Issues are collections of things."}/>
+  <Title class="col-span-12 lg:col-span-8 order-5 text-4xl lg:text-6xl" title={"Issues are collections of things."}/>
 
-  <div class="col-span-4">
+  <div class="col-span-12 lg:col-span-4 order-6">
     You can think of them like issues of newspapers. You might get a small taste of some content that can lead you to turning the page to something else. That somewhere else can be on this site, or off it. If you have to fit it into a mental model for the web, thing about how blogs have tags, and a tag page might link to many articles. 
   </div>
   
