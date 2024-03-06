@@ -20,7 +20,7 @@ const { title, frontmatter } = Astro.props;
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class="font-serif">
+  <body class="font-serif pb-16">
     <Navigation issue={frontmatter?.issue_number} />
     <slot />
     <style is:global>

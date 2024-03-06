@@ -7,8 +7,6 @@ interface Props {
 const { title, frontmatter } = Astro.props;
 ---
 
-<Layout title={title} frontmatter={frontmatter}>
-  <div class="max-w-prose prose-xl px-10">
-    <slot />
-  </div>
-</Layout>
+<div class="max-w-prose prose-xl px-10">
+  <slot />
+</div>

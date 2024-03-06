@@ -5,7 +5,7 @@ import romanize from "../../utils/romanize";
 
 export async function getStaticPaths({paginate}) {
   const blogEntries = await getCollection("issues");
-  return paginate(blogEntries.sort((a,b) => a.data.issue_number - b.data.issue_number), {pageSize: 3})
+  return paginate(blogEntries.sort((a,b) => a.data.issue_number - b.data.issue_number), {pageSize: 1})
 
 }
 
@@ -45,7 +45,7 @@ console.log(pageRange)
             <a class="flex flex-col p-10" href={`/issues/${issue.slug}`}>
               <div class="flex w-full justify-between items-center text-4xl">
                 <span class="max-w-2xl">{issue.data.title}</span>{" "}
-                <span transition:name={`issue_number_${issue.data.issue_number}`} class="font-lithops text-8xl">
+                <span transition:animate="slide" transition:name={`issue_number_${issue.data.issue_number}`} class="font-lithops text-8xl">
                   {romanize(issue.data.issue_number)}
                 </span>
               </div>
@@ -53,7 +53,7 @@ console.log(pageRange)
             <div class="block z-10 max-h-0 group-last:hidden group-hover:max-h-[50px] duration-1000 transition-all ease-in-out">
               <IssueContents[index].Content/>
             </div>
-            <div class="z-10 hidden group-last:block">
+            <div class="z-10 hidden group-last:block pb-16">
               <IssueContents[index].Content/>
             </div>
           </div>
