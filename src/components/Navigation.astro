@@ -13,7 +13,9 @@ const dayNum = today.getDay();
 const monthNum = today.getMonth();
 const date = today.getDate();
 const year = today.getFullYear();
+// @ts-ignore
 const day = new Intl.DateTimeFormat("en-US", options).format(today);
+// @ts-ignore
 const month = new Intl.DateTimeFormat("en-US", optionsMonth).format(today);
 ---
 

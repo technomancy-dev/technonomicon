@@ -3,61 +3,83 @@ import { getCollection, getEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import romanize from "../../utils/romanize";
 
-export async function getStaticPaths({paginate}) {
+export async function getStaticPaths({ paginate }: { paginate: any }) {
   const blogEntries = await getCollection("issues");
-  return paginate(blogEntries.sort((a,b) => a.data.issue_number - b.data.issue_number), {pageSize: 1})
-
+  return paginate(
+    blogEntries.sort((a, b) => a.data.issue_number - b.data.issue_number),
+    { pageSize: 1 },
+  );
 }
 
-const { page } = Astro.props;
+const { page, title }: { page: any; title: string } = Astro.props;
 
-const allIssues = page.data
+const allIssues = page.data;
 const IssueContents = await Promise.all(
-  allIssues.map((issue) => issue.render())
+  allIssues.map((issue: any) => issue.render()),
 );
 
-const arrayRange = (start, stop, step) =>
-    Array.from(
+const arrayRange = (start: number, stop: number, step: number) =>
+  Array.from(
     { length: (stop - start) / step + 1 },
-    (value, index) => start + index * step
-    );
+    (value, index) => start + index * step,
+  );
 
-
-const pageRange = arrayRange(1, page.lastPage, 1)
-console.log(pageRange)
+const pageRange = arrayRange(1, page.lastPage, 1);
 ---
 
-<Layout>
+<Layout title={title} frontmatter={null}>
   <div class="md:px-10">
     <div class="flex items-center py-2 justify-between">
       <h1 class="lg:text-7xl px-2 md:px-0 mb-2">All issues</h1>
 
       <div class="join">
-        {page.url.prev ? <a href={page.url.prev} class="join-item btn">«</a> : null}
+        {
+          page.url.prev ? (
+            <a href={page.url.prev} class="join-item btn">
+              «
+            </a>
+          ) : null
+        }
         <a class="join-item btn">Page {page.currentPage}</a>
-        {page.url.next ? <a href={page.url.next} class="join-item btn">»</a> : null}
+        {
+          page.url.next ? (
+            <a href={page.url.next} class="join-item btn">
+              »
+            </a>
+          ) : null
+        }
       </div>
     </div>
     <div class="relative pb-10">
       {
-        allIssues.map((issue,index) => (
-          <div class="group border-t z-20 overflow-hidden last:border-b border-l rounded-t-sm shadow-[rgba(0,0,0,0.05)_0px_-2px_4px_0px] border-r">
-            <a class="flex flex-col px-2 md:p-10" href={`/issues/${issue.slug}`}>
-              <div class="flex w-full justify-between items-center lg:text-4xl">
-                <span class="max-w-2xl">{issue.data.title}</span>{" "}
-                <span transition:animate="slide" transition:name={`issue_number_${issue.data.issue_number}`} class="font-lithops text-8xl">
-                  {romanize(issue.data.issue_number)}
-                </span>
+        allIssues.map((issue: any, index: number) => {
+          const Component = IssueContents[index].Content;
+          return (
+            <div class="group border-t z-20 overflow-hidden last:border-b border-l rounded-t-sm shadow-[rgba(0,0,0,0.05)_0px_-2px_4px_0px] border-r">
+              <a
+                class="flex flex-col px-2 md:p-10"
+                href={`/issues/${issue.slug}`}
+              >
+                <div class="flex w-full justify-between items-center lg:text-4xl">
+                  <span class="max-w-2xl">{issue.data.title}</span>{" "}
+                  <span
+                    transition:animate="slide"
+                    transition:name={`issue_number_${issue.data.issue_number}`}
+                    class="font-lithops text-8xl"
+                  >
+                    {romanize(issue.data.issue_number)}
+                  </span>
+                </div>
+              </a>
+              <div class="block z-10 max-h-0 group-last:hidden group-hover:max-h-[50px] duration-1000 transition-all ease-in-out">
+                <Component />
               </div>
-            </a>
-            <div class="block z-10 max-h-0 group-last:hidden group-hover:max-h-[50px] duration-1000 transition-all ease-in-out">
-              <IssueContents[index].Content/>
+              <div class="z-10 hidden group-last:block pb-16">
+                <Component />
+              </div>
             </div>
-            <div class="z-10 hidden group-last:block pb-16">
-              <IssueContents[index].Content/>
-            </div>
-          </div>
-        ))
+          );
+        })
       }
     </div>
   </div>
