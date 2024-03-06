@@ -9,10 +9,10 @@ export async function getStaticPaths() {
   }));
 }
 
-const { entry, frontmatter } = Astro.props;
+const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout frontmatter={entry.data}>
+<Layout title={entry.data.title} frontmatter={entry.data}>
   <Content />
 </Layout>

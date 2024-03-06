@@ -7,6 +7,6 @@ const entry = await getEntry("issues", "introduction-to-the-technonomicon");
 const { Content, headings } = await entry.render();
 ---
 
-<Layout frontmatter={entry.data}>
+<Layout title={entry.data.title} frontmatter={entry.data}>
   <Content />
 </Layout>

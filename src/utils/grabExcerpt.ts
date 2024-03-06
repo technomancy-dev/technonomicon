@@ -1,8 +1,8 @@
-const xChars = (limit) => (file) => {
+const xChars = (limit: number) => (file: any) => {
   file.excerpt = file.content.slice(0, limit);
 };
 
-const xLines = (limit) => (file) => {
+const xLines = (limit: number) => (file: any) => {
   file.excerpt = file.content.split("\n").slice(0, limit).join(" ");
 };
 
