@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Code from "../../components/Code.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("articles");
@@ -12,11 +13,20 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
+console.log(headings);
 ---
 
 <Layout title={entry.data.title} frontmatter={entry.data}>
-  <div class="px-2 md:px-10">
-    <Content components={{ pre: Code }} />
+  <div class="grid grid-cols-12">
+    <div
+      transition:name={entry.data.title}
+      class="px-2 col-span-6 prose prose-xl md:px-10"
+    >
+      <Content components={{ pre: Code }} />
+    </div>
+    <div class="text-primary col-span-6">
+      <TableOfContents headings={headings} />
+    </div>
   </div>
 </Layout>

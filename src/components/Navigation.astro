@@ -36,6 +36,7 @@ const month = new Intl.DateTimeFormat("en-US", optionsMonth).format(today);
             <span class="mb-1">issue no.</span>
             <span
               transition:name={`issue_number_${issue}`}
+              transition:animate="fade"
               class="font-lithops -mt-4 leading-none text-8xl"
             >
               {issue ? romanize(issue) : "!?"}

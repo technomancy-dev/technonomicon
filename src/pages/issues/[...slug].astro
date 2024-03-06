@@ -13,6 +13,8 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout title={entry.data.title} frontmatter={entry.data}>
-  <Content />
+<Layout frontmatter={entry.data}>
+  <div>
+    <Content />
+  </div>
 </Layout>

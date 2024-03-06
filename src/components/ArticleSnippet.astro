@@ -3,10 +3,7 @@ import FancyParagraph from "./FancyParagraph.astro";
 const { title, class: className, paragraphClass, transitionName } = Astro.props;
 ---
 
-<div
-  transition:name={transitionName ? transitionName : title}
-  class={className}
->
+<div class={className}>
   <h4 class="mb-6 font-display text-3xl text-primary">{title}</h4>
   <FancyParagraph class={paragraphClass}>
     <slot />

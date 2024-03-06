@@ -1,11 +1,11 @@
 ---
-const { markdown, class: className, href, components } = Astro.props;
+const { markdown, class: className, href, components, title } = Astro.props;
 markdown.body = markdown.body.split("").slice(0, 10).join("");
 
 const { Content } = await markdown.render();
 ---
 
-<a class={className} href={href}>
+<a transition:name={title} class={className} href={href}>
   <div>
     <Content components={components} />
   </div>

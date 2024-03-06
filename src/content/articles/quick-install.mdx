@@ -5,10 +5,14 @@ layout: ../../layouts/Article.astro
 issue_number: 1
 ---
 
+import Title from "../../components/Title.astro";
+
+# {frontmatter.title}
+
 **Start it up like any other Astro theme.**
 
-```
-  npm
+```bash
+  npm create astro@latest -- --template technomancy-dev/technonomicon
 ```
 
 After that you can open up `pages/index.astro` where you will see we are using `collections` to get an `issue`. Issues are the basic building blocks of a technonomicon. They can be treated like pages in a textbook or issues of a newspaper, but we will get into that later. For now just open up the file for the issue and glance through it.
