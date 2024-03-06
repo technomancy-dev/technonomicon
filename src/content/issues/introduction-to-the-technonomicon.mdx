@@ -2,10 +2,12 @@
 title: Publish amazing content in a unique format. 
 description: Robots are fucking us.
 issue_number: 1
+layout: "../../layouts/Issue.astro"
 ---
 
 import { getEntry } from "astro:content";
 import SnippetLink from "../../components/SnippetLink.astro";
+import AstroLogo from "../../components/AstroLogo.astro";
 import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
 import Title from "../../components/Title.astro";
 import Code from "../../components/Code.astro";
@@ -23,6 +25,12 @@ export const quickRender = await quick_install.render()
 {/* {console.log(technonomicon.body)} */}
 <div class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify">
 
+  <div class="col-span-10 text-9xl text-left">
+    # Publish amazing content in a unique format.
+  </div>
+  <div class="col-span-2">
+    <AstroLogo/>
+  </div>
   <MarkdownSnippet
     markdown={quick_install}
     components={{...components, h1: (props)=> <h2{...props}/>,  a: (props) => <p{...props}/> }}

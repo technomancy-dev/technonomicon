@@ -1,0 +1,13 @@
+---
+interface Props {
+  title: string;
+  frontmatter: any;
+}
+
+const { frontmatter } = Astro.props;
+console.log({ frontmatter });
+---
+
+<div transition:name={frontmatter.title} class="">
+  <slot />
+</div>
