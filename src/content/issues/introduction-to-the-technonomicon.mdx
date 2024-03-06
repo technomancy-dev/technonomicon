@@ -7,11 +7,12 @@ issue_number: 1
 import { getEntry } from "astro:content";
 import SnippetLink from "../../components/SnippetLink.astro";
 import Title from "../../components/Title.astro";
+import Code from "../../components/Code.astro";
 import matter from "gray-matter"
 import grabExcerpt, { lines5 } from "../../utils/grabExcerpt.ts"
 export const technonomicon = await getEntry("articles", "what-is-the-technonomicon");
 export const okButWhatTechnonomicon = await getEntry("articles", "ok-but-what-is-the-technonomicon");
-
+export const components = { pre: Code }
 
 
 
@@ -23,18 +24,21 @@ export const okButWhatTechnonomicon = await getEntry("articles", "ok-but-what-is
   title = { technonomicon.data.title }
     >
   {/* TODO: a better solution to avoid magic excerpt numbers would be nice. Maybe in frontmatter of the article so its with that at least. */}
-    { matter(technonomicon.body, {excerpt: lines5} ).excerpt}
+    { matter(technonomicon.body, { excerpt: lines5 }).excerpt}
   </SnippetLink>
   
-  <div class="col-span-6">
-    Start it up like any other Astro theme. 
+  <div class="col-span-8 prose max-w-full">
+    
+    __Start it up like any other Astro theme.__
 
-    ```npm create astro@latest -- --template technomancy.dev/technonomicon```
+    ```javascript
+    npm create astro@latest -- --template technomancy.dev/technonomicon
+    ```
 
     After that you can open up `pages/index.astro` where you will see we are using `collections` to get an `issue`. Issues are the basic building blocks of a technonomicon. They can be treated like pages in a textbook or issues of a newspaper, but we will get into that later. For now just open up the file for the issue and glance through it. 
   </div>
 
-  <Title class="col-span-6 text-7xl" title={"So how the hell do I use this thing??"}/>
+  <Title class="col-span-4 text-7xl text-justify" title={"So how the hell do I use this thing??"}/>
 
   <Title class="col-span-8 text-7xl" title={"Issues are collections of things."}/>
 
