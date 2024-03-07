@@ -23,7 +23,7 @@ export const how_to = await getEntry(
 
 
 <div class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify">
-  <div class="col-span-10 text-9xl text-left">
+  <div class="col-span-10 text-3xl lg:text-9xl text-left">
     # {frontmatter.title}
   </div>
   <div class="col-span-2">
@@ -55,7 +55,7 @@ export const how_to = await getEntry(
     cta="Read more about why I made this"
     title={technonomicon.data.title}
   />
-  <a href={`/issues/${how_to.slug}`} class="col-span-8 flex justify-end border-primary gap-4 p-2 border-dashed border-4 w-full items-center text-left">
+  <a href={`/issues/${how_to.slug}`} class="col-span-12 lg:col-span-8 flex justify-end border-primary gap-4 p-2 border-dashed border-4 w-full items-center text-left">
     <span class="text-9xl"><Mushroom /></span>
     <div class="text-6xl flex flex-col">
       <span class="text-3xl text-primary">{how_to.data.title}</span>
