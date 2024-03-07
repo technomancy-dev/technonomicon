@@ -4,5 +4,49 @@ description: Robots are fucking us2.
 layout: "../../layouts/Issue.astro"
 issue_number: 2
 ---
+import { getEntry } from "astro:content";
+import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
+import FancyParagraph from "../../components/FancyParagraph.astro";
+export const what_are_issues = await getEntry(
+    "articles",
+    "what-are-issues",
+);
 
-# So this is awkward...
+export const what_are_articles = await getEntry(
+    "articles",
+    "what-are-articles",
+);
+
+
+
+<div class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify">
+    <div class="col-span-12 text-6xl text-left">
+        # {frontmatter.title}
+    </div>
+    <MarkdownSnippet
+        markdown={what_are_issues}
+        components={{    
+            h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/articles/${what_are_issues.slug}`}  {...props}/></h2>,
+            a: (props) => <p {...props} />,
+            More: props => <></>,
+            FancyParagraph
+        }}
+        href={`/articles/${what_are_issues.slug}`}
+        class="lg:col-span-6 prose-xl col-span-12"
+        cta="Read more about getting started"
+        title={what_are_issues.data.title}
+    />
+        <MarkdownSnippet
+        markdown={what_are_articles}
+        components={{    
+            h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/articles/${what_are_articles.slug}`}  {...props}/></h2>,
+            a: (props) => <p {...props} />,
+            More: props => <></>,
+            FancyParagraph
+        }}
+        href={`/articles/${what_are_articles.slug}`}
+        class="lg:col-span-6 prose-xl col-span-12"
+        cta="Read more about getting started"
+        title={what_are_articles.data.title}
+    />
+</div>

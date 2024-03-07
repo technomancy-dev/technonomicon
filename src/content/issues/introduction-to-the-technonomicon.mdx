@@ -45,18 +45,21 @@ export const how_to = await getEntry(
   <MarkdownSnippet
     markdown={technonomicon}
     components={{
-      h1: (props) => <h2 {...props} />,
-      a: props => <a target="_blank" class="text-primary leading-3" {...props} />,
+      h1: (props) => <h2 class="text-primary text-4xl text-left" ><a href={`/articles/${technonomicon.slug}`}  {...props}/></h2>,
+      a: props => <div class="border-l text-sm pl-2 border-secondary"><a target="_blank" class="text-secondary leading-3" {...props} /></div>,
       More: props => <></>,
       FancyParagraph
     }}
     href={`/articles/${technonomicon.slug}`}
-    class="lg:col-span-8 xl:col-span-4 prose-xl col-span-12"
+    class="lg:col-span-8 xl:col-span-4 row-span-2 prose-xl col-span-12"
     cta="Read more about why I made this"
     title={technonomicon.data.title}
   />
-  <a href={`/issues/${how_to.slug}`} class="col-span-8 flex flex-col justify-end w-full items-end items-baseline text-left">
-    <div class="text-6xl flex items-center gap-6"><Mushroom /> <span class="text-3xl">{how_to.data.title}</span></div>
-    <span class="text-xl mt-4 text-base-content/75">Learn more about how to use this in the next issue.</span>
+  <a href={`/issues/${how_to.slug}`} class="col-span-8 flex justify-end border-primary gap-4 p-2 border-dashed border-4 w-full items-center text-left">
+    <span class="text-9xl"><Mushroom /></span>
+    <div class="text-6xl flex flex-col">
+      <span class="text-3xl text-primary">{how_to.data.title}</span>
+      <span class="text-xl mt-4 text-base-content/75">Learn more about how to use this in the next issue.</span>
+    </div>
   </a>
 </div>

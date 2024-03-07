@@ -1,0 +1,20 @@
+---
+title: What is an article.
+description: Introducing the technonomicon.
+layout: ../../layouts/Article.astro
+issue_number: 1
+---
+
+# {frontmatter.title}
+
+Articles are the topics that warrant their own page, but likely will also end up (at least partially) shown in an `issue`.
+
+Articles have access to some special tricks that make them easier to render inside an issue. One example of this is the `<More/>` component.
+
+You can use `<More/>` to add things that should show in the article but be hidden when rendered elsewhere.
+
+```astro
+<More>
+ Stuff that should be shown in the full article, but not in an issue. 
+</More>
+```

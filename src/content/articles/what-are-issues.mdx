@@ -1,0 +1,37 @@
+---
+title: What is an issue.
+description: Introducing the technonomicon.
+layout: ../../layouts/Article.astro
+issue_number: 1
+---
+
+# {frontmatter.title}
+
+Issues are at their core a collection of things. These can be `articles` links to other parts of the web. Images, Data Visualizations and much more.
+
+They are meant to tie things together in a consumable package. 
+
+If you are making a course, the course could be made of `issues`, which represent topics. 
+
+The `issues` bring together many lessons into `articles`. 
+
+There are components made for rendering articles in an issue. Like the `<MarkdownSnippet/>` component
+
+```mdx
+import { getEntry } from "astro:content";
+import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
+export const article = await getEntry(
+    "articles",
+    "article",
+);
+<MarkdownSnippet
+    markdown={article}
+    components={{    
+        {/* Components to override or add */}
+    }}
+    href={`/articles/${article.slug}`}
+    class="lg:col-span-6 prose-xl col-span-12"
+    cta="Read more about getting started"
+    title={article.data.title}
+/>
+```
