@@ -5,13 +5,9 @@ markdown.body = markdown.body.split("").slice(0, 10).join("");
 const { Content } = await markdown.render();
 ---
 
-<a
-  class:list={[className, "hover:scale-105 transition-all ease-in-out"]}
-  class={className}
-  href={href}
->
+<div class={className}>
   <div>
     <Content components={components} />
   </div>
-  <div class="btn btn-block btn-gohst">{cta}</div>
-</a>
+  <a href={href} class="btn btn-block btn-outline btn-primary">{cta}</a>
+</div>

@@ -7,14 +7,19 @@ layout: "../../layouts/Issue.astro"
 
 import { getEntry } from "astro:content";
 import AstroLogo from "../../components/AstroLogo.astro";
+import Mushroom from "../../components/Mushroom.astro";
 import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
+import FancyParagraph from "../../components/FancyParagraph.astro";
 
 export const technonomicon = await getEntry(
   "articles",
   "what-is-the-technonomicon",
 );
 export const quick_install = await getEntry("articles", "quick-install");
-
+export const how_to = await getEntry(
+  "issues",
+  "how-to-use-this-thing",
+);
 
 
 <div class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify">
@@ -27,9 +32,10 @@ export const quick_install = await getEntry("articles", "quick-install");
   <MarkdownSnippet
     markdown={quick_install}
     components={{    
-      h1: (props) => <h2 {...props} />,
+      h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/articles/${quick_install.slug}`}  {...props}/></h2>,
       a: (props) => <p {...props} />,
-      More: props => <></>
+      More: props => <></>,
+      FancyParagraph
     }}
     href={`/articles/${quick_install.slug}`}
     class="lg:col-span-6 xl:col-span-8 prose-xl col-span-12"
@@ -40,12 +46,17 @@ export const quick_install = await getEntry("articles", "quick-install");
     markdown={technonomicon}
     components={{
       h1: (props) => <h2 {...props} />,
-      a: (props) => <p {...props} />,
-      More: props => <></>
+      a: props => <a target="_blank" class="text-primary leading-3" {...props} />,
+      More: props => <></>,
+      FancyParagraph
     }}
     href={`/articles/${technonomicon.slug}`}
-    class="lg:col-span-8 xl:col-span-4 prose-xl row-span-2 col-span-12"
+    class="lg:col-span-8 xl:col-span-4 prose-xl col-span-12"
     cta="Read more about why I made this"
     title={technonomicon.data.title}
   />
+  <a href={`/issues/${how_to.slug}`} class="col-span-8 flex flex-col justify-end w-full items-end items-baseline text-left">
+    <div class="text-6xl flex items-center gap-6"><Mushroom /> <span class="text-3xl">{how_to.data.title}</span></div>
+    <span class="text-xl mt-4 text-base-content/75">Learn more about how to use this in the next issue.</span>
+  </a>
 </div>

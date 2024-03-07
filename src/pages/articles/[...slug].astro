@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import FancyParagraph from "../../components/FancyParagraph.astro";
 import Code from "../../components/Code.astro";
 import More from "../../components/More.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
@@ -20,7 +21,7 @@ const { Content, headings } = await entry.render();
 <Layout title={entry.data.title} frontmatter={entry.data}>
   <div class="grid grid-cols-12">
     <div class="px-2 col-span-8 prose-xl md:px-10">
-      <Content components={{ More: More }} />
+      <Content components={{ More: More, FancyParagraph }} />
     </div>
     <div class="text-primary col-span-4">
       <TableOfContents headings={headings} />
