@@ -22,7 +22,7 @@ const { title, frontmatter } = Astro.props;
   </head>
   <body class="font-serif pb-16">
     <Navigation issue={frontmatter?.issue_number} />
-    <div>
+    <div transition:animate="fade">
       <slot />
     </div>
     <style is:global>
