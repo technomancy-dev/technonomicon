@@ -1,13 +1,13 @@
 ---
-import Layout from "./Layout.astro";
 interface Props {
   title: string;
   frontmatter: any;
 }
 
 const { title, frontmatter } = Astro.props;
+console.log({ frontmatter });
 ---
 
-<div class="">
+<div transition:name={frontmatter.title} class="">
   <slot />
 </div>

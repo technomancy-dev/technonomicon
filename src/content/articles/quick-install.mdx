@@ -20,6 +20,54 @@ After that you can open up `pages/index.astro` where you will see we are using `
 
 You will notice it is an MDX file that is tying a few things together.
 
-```MDX
-This is cool
+```mdx
+---
+title: Publish amazing content in a unique format.
+description: An Astro theme for publishing content for humans to read. 
+issue_number: 1
+layout: "../../layouts/Issue.astro"
+---
+
+import { getEntry } from "astro:content";
+import AstroLogo from "../../components/AstroLogo.astro";
+import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
+
+export const technonomicon = await getEntry(
+  "articles",
+  "what-is-the-technonomicon",
+);
+export const quick_install = await getEntry("articles", "quick-install");
+
+
+
+<div class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify">
+  <div class="col-span-10 text-9xl text-left">
+    # {frontmatter.title}
+  </div>
+  <div class="col-span-2">
+    <AstroLogo />
+  </div>
+  <MarkdownSnippet
+    markdown={quick_install}
+    components={{    
+      h1: (props) => <h2 {...props} />,
+      a: (props) => <p {...props} />,
+    }}
+    href={`/articles/${quick_install.slug}`}
+    class="lg:col-span-6 xl:col-span-8 prose-xl col-span-12"
+    cta="Read more about why I made this."
+    title={quick_install.data.title}
+  />
+  <MarkdownSnippet
+    markdown={technonomicon}
+    components={{
+      h1: (props) => <h2 {...props} />,
+      a: (props) => <p {...props} />,
+    }}
+    href={`/articles/${technonomicon.slug}`}
+    class="lg:col-span-8 xl:col-span-4 prose-xl row-span-2 col-span-12"
+    cta="Read more about why I made this."
+    title={technonomicon.data.title}
+  />
+</div>
 ```
