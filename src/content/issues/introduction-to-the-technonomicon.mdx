@@ -29,10 +29,11 @@ export const quick_install = await getEntry("articles", "quick-install");
     components={{    
       h1: (props) => <h2 {...props} />,
       a: (props) => <p {...props} />,
+      More: props => <></>
     }}
     href={`/articles/${quick_install.slug}`}
     class="lg:col-span-6 xl:col-span-8 prose-xl col-span-12"
-    cta="Read more about why I made this."
+    cta="Read more about getting started"
     title={quick_install.data.title}
   />
   <MarkdownSnippet
@@ -40,10 +41,11 @@ export const quick_install = await getEntry("articles", "quick-install");
     components={{
       h1: (props) => <h2 {...props} />,
       a: (props) => <p {...props} />,
+      More: props => <></>
     }}
     href={`/articles/${technonomicon.slug}`}
     class="lg:col-span-8 xl:col-span-4 prose-xl row-span-2 col-span-12"
-    cta="Read more about why I made this."
+    cta="Read more about why I made this"
     title={technonomicon.data.title}
   />
 </div>

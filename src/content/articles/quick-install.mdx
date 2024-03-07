@@ -18,7 +18,13 @@ import Title from "../../components/Title.astro";
 
 After that you can open up `pages/index.astro` where you will see we are using `collections` to get an `issue`. Issues are the basic building blocks of a technonomicon. They can be treated like pages in a textbook or issues of a newspaper, but we will get into that later. For now just open up the file for the issue and glance through it.
 
-You will notice it is an MDX file that is tying a few things together.
+**You will notice it is an MDX file that is tying a few things together.**
+
+It might do something simple like pull togther two articles and join them with a title for the issue. 
+
+<More>
+
+> Modify this issue to see changes on the home page. 
 
 ```mdx
 ---
@@ -55,7 +61,7 @@ export const quick_install = await getEntry("articles", "quick-install");
     }}
     href={`/articles/${quick_install.slug}`}
     class="lg:col-span-6 xl:col-span-8 prose-xl col-span-12"
-    cta="Read more about why I made this."
+    cta="Read more about getting started."
     title={quick_install.data.title}
   />
   <MarkdownSnippet
@@ -71,3 +77,4 @@ export const quick_install = await getEntry("articles", "quick-install");
   />
 </div>
 ```
+</More>

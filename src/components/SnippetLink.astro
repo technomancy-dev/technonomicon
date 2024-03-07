@@ -8,11 +8,7 @@ const { title, class: className, paragraphClass, href, target } = Astro.props;
   href={href ?? "#"}
   target={target}
 >
-  <ArticleSnippet
-    transitionName={href}
-    title={title}
-    paragraphClass="first-line:text-primary"
-  >
+  <ArticleSnippet title={title} paragraphClass="first-line:text-primary">
     <slot />
   </ArticleSnippet>
 </a>
