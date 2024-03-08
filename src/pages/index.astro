@@ -8,5 +8,7 @@ const { Content, headings } = await entry.render();
 ---
 
 <Layout title={entry.data.title} frontmatter={entry.data}>
-  <Content />
+  <div transition:name={entry.data.title}>
+    <Content />
+  </div>
 </Layout>
