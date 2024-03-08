@@ -7,7 +7,7 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
   const blogEntries = await getCollection("issues");
   return paginate(
     blogEntries.sort((a, b) => a.data.issue_number - b.data.issue_number),
-    { pageSize: 3 },
+    { pageSize: 1 },
   );
 }
 
@@ -74,7 +74,10 @@ const pageRange = arrayRange(1, page.lastPage, 1);
               <div class="block z-10 max-h-0 group-last:hidden group-hover:max-h-[50px] duration-1000 transition-all ease-in-out">
                 <Component />
               </div>
-              <div class="z-10 hidden group-last:block pb-16">
+              <div
+                transition:name={issue.data.title}
+                class="z-10 hidden group-last:block pb-16"
+              >
                 <Component />
               </div>
             </div>

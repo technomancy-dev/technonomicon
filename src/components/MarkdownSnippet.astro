@@ -6,7 +6,7 @@ const { Content } = await markdown.render();
 ---
 
 <div class={className}>
-  <div>
+  <div transition:name={markdown.data.title}>
     <Content components={components} />
   </div>
   <a href={href} class="btn btn-block btn-outline btn-primary">{cta}</a>

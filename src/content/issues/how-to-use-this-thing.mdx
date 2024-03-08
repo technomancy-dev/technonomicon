@@ -1,7 +1,6 @@
 ---
 title: This is a Digital Garden, so you will need some gardening tools.
 description: Robots are fucking us2.
-layout: "../../layouts/Issue.astro"
 issue_number: 2
 ---
 
@@ -9,13 +8,13 @@ import { getEntry } from "astro:content";
 import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
 import FancyParagraph from "../../components/FancyParagraph.astro";
 export const what_are_issues = await getEntry(
-  "articles",
-  "what-are-issues",
+    "articles",
+    "what-are-issues",
 );
 
 export const what_are_articles = await getEntry(
-  "articles",
-  "what-are-articles",
+    "articles",
+    "what-are-articles",
 );
 
 <div
