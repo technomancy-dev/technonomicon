@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-import romanize from "../../utils/romanize";
+import Layout from "../../../layouts/Layout.astro";
+import romanize from "../../../utils/romanize";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const blogEntries = await getCollection("issues");
