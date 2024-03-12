@@ -1,5 +1,5 @@
 ---
-const { issue } = Astro.props;
+const { issue, issue_slug } = Astro.props;
 import Mushroom from "./Mushroom.astro";
 import Bug from "./Bug.astro";
 import romanize from "../utils/romanize";
@@ -24,7 +24,7 @@ const month = new Intl.DateTimeFormat("en-US", optionsMonth).format(today);
     <a class="max-w-[50%]" href="/">
       <h1 class="text-2xl md:text-7xl"><span>technonomicon</span></h1>
       <p
-        class="text-xs font-extrabold text-transparent bg-clip-text bg-gradient-to-t from-green-200 via-base-content to-base-content"
+        class="text-xs font-extrabold text-transparent bg-clip-text bg-gradient-to-t from-primary via-base-content to-base-content"
       >
         The book of the devs. — A print inspired digital garden <span
           class="inline-flex items-center"><Mushroom /><Bug /></span
@@ -34,16 +34,25 @@ const month = new Intl.DateTimeFormat("en-US", optionsMonth).format(today);
     {
       (
         <div>
-          <p class="flex items-end gap-2">
+          <a
+            href={issue_slug}
+            class:list={[
+              "flex items-end gap-2 text-transparent bg-clip-text bg-gradient-to-t via-base-content to-base-content",
+              issue_slug ? "from-primary" : "from-accent",
+            ]}
+          >
             <span class="mb-1">issue no.</span>
             <span
               transition:name={`issue_number_${issue}`}
               transition:animate="fade"
-              class="font-lithops -mt-4 leading-none text-8xl"
+              class:list={[
+                "font-lithops -mt-4 leading-none text-transparent bg-clip-text bg-gradient-to-t from-primary to-base-content text-8xl",
+                issue_slug ? "from-primary" : "from-accent",
+              ]}
             >
               {issue ? romanize(issue) : "!?"}
             </span>
-          </p>
+          </a>
         </div>
       )
     }

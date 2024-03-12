@@ -4,10 +4,12 @@ import Layout from "../layouts/Layout.astro";
 import { getEntry } from "astro:content";
 
 const entry = await getEntry("issues", "introduction-to-the-technonomicon");
+
+const issueSlug = `/issues/${entry.slug}`;
 const { Content, headings } = await entry.render();
 ---
 
-<Layout title={entry.data.title} frontmatter={entry.data}>
+<Layout issueSlug={issueSlug} title={entry.data.title} frontmatter={entry.data}>
   <div transition:name={entry.data.title}>
     <Content />
   </div>

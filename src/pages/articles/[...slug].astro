@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import FancyParagraph from "../../components/FancyParagraph.astro";
-import Code from "../../components/Code.astro";
 import More from "../../components/More.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 
@@ -16,9 +15,16 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
+const issue = await getCollection("issues", ({ data }) => {
+  return data.issue_number === entry.data.issue_number;
+});
 ---
 
-<Layout title={entry.data.title} frontmatter={entry.data}>
+<Layout
+  issueSlug={`/issues/${issue[0].slug}`}
+  title={entry.data.title}
+  frontmatter={entry.data}
+>
   <div class="grid grid-cols-12">
     <div
       transition:name={entry.data.title}

@@ -4,9 +4,10 @@ import Navigation from "../components/Navigation.astro";
 interface Props {
   title: string;
   frontmatter: any;
+  issueSlug: string;
 }
 
-const { title, frontmatter } = Astro.props;
+const { title, frontmatter, issueSlug } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,7 +22,7 @@ const { title, frontmatter } = Astro.props;
     <ViewTransitions />
   </head>
   <body class="font-serif pb-16">
-    <Navigation issue={frontmatter?.issue_number} />
+    <Navigation issue_slug={issueSlug} issue={frontmatter?.issue_number} />
     <div transition:animate="fade">
       <slot />
     </div>
