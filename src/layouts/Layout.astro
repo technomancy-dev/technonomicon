@@ -4,7 +4,7 @@ import Navigation from "../components/Navigation.astro";
 interface Props {
   title: string;
   frontmatter: any;
-  issueSlug: string;
+  issueSlug?: string;
 }
 
 const { title, frontmatter, issueSlug } = Astro.props;
