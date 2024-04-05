@@ -5,6 +5,9 @@ issue_number: 1
 ---
 
 import { getEntry } from "astro:content";
+import Card from "../../components/Cards/NormalCard/Card.astro"
+import CardHolo from "../../components/Cards/HoloCard/Card.astro"
+import TipCard from "../../components/Cards/TipCard/Card.astro"
 import AstroLogo from "../../components/AstroLogo.astro";
 import Mushroom from "../../components/Mushroom.astro";
 import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
@@ -14,6 +17,17 @@ export const technonomicon = await getEntry(
   "articles",
   "what-is-the-technonomicon",
 );
+
+export const technonomiconCard = await getEntry(
+  "cards",
+  "technonomicon",
+);
+
+export const why_mdx_cards = await getEntry(
+  "cards",
+  "why-mdx-cards",
+);
+
 export const quick_install = await getEntry("articles", "quick-install");
 export const how_to = await getEntry(
   "issues",
@@ -21,15 +35,51 @@ export const how_to = await getEntry(
 );
 
 <div
-  class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify"
+  class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify overflow-clip"
 >
-  <div class="col-span-10 text-3xl lg:text-9xl text-left">
-    # {frontmatter.title}
+  {/* <div class="col-span-10 text-3xl lg:text-9xl text-left">
+                    # {frontmatter.title}
+                  </div>
+
+                  <div class="col-span-2">
+                    <AstroLogo />
+                  </div> */}
+
+  <div class="col-span-12">
+    <span class="text-3xl lg:text-7xl">
+      ## Portable Content like never before.
+    </span>
+
+    <p class="text-center holographic-text font-display mt-4 text-xl lg:text-4xl">Now with all new cards!</p>
+
+    <div
+      class="flex flex-row-reverse gap-2 justify-center w-full my-12 flex-wrap [perspective:900px] overflow-visible"
+    >
+      <TipCard markdown={why_mdx_cards} />
+
+      <CardHolo markdown={technonomiconCard} />
+
+      <Card markdown={technonomiconCard} />
+    </div>
+
+    <div class="prose">
+      These two cards use the same file for content. They simply have a different wrapper. A wrapper which has total control of how the elements are rendered, because of the power of MDX.
+    </div>
   </div>
 
-  <div class="col-span-2">
-    <AstroLogo />
-  </div>
+  <MarkdownSnippet
+    markdown={technonomicon}
+    components={{
+      h1: (props) => <h2 class="text-primary font-display mt-0 text-6xl text-left" ><a class="text-primary" href={`/articles/${technonomicon.slug}`}  {...props}/></h2>,
+      a: props => <div class="border-l text-sm pl-2 border-secondary"><a target="_blank" class="text-secondary leading-3" {...props} /></div>,
+      More: props => <></>,
+      FancyParagraph
+    }}
+    href={`/articles/${technonomicon.slug}`}
+    class="prose prose-xl xl:col-span-8 col-span-12"
+    cta="Read more about why I made this"
+    title={technonomicon.data.title}
+  />
 
   <MarkdownSnippet
     markdown={quick_install}
@@ -40,23 +90,9 @@ export const how_to = await getEntry(
       FancyParagraph
     }}
     href={`/articles/${quick_install.slug}`}
-    class="lg:col-span-6 xl:col-span-8 prose-xl col-span-12"
+    class="lg:col-span-8 xl:col-span-4 row-span-2 prose-xl col-span-12"
     cta="Read more about getting started"
     title={quick_install.data.title}
-  />
-
-  <MarkdownSnippet
-    markdown={technonomicon}
-    components={{
-      h1: (props) => <h2 class="text-primary text-4xl text-left" ><a href={`/articles/${technonomicon.slug}`}  {...props}/></h2>,
-      a: props => <div class="border-l text-sm pl-2 border-secondary"><a target="_blank" class="text-secondary leading-3" {...props} /></div>,
-      More: props => <></>,
-      FancyParagraph
-    }}
-    href={`/articles/${technonomicon.slug}`}
-    class="lg:col-span-8 xl:col-span-4 row-span-2 prose-xl col-span-12"
-    cta="Read more about why I made this"
-    title={technonomicon.data.title}
   />
 
   <a

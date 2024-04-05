@@ -10,6 +10,7 @@ import Mark from "./Mark.astro";
 import Box from "./Box.astro";
 import BoxNumber from "./BoxNumber.astro";
 import BoxList from "./BoxList.astro";
+import More from "../../More.astro";
 
 export const components = {
   Name,
@@ -24,6 +25,7 @@ export const components = {
   BoxList,
   ArtSection,
   Top,
+  Card: More,
 };
 
 export default components;

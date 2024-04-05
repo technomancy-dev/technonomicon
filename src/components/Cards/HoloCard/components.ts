@@ -1,15 +1,16 @@
-import Name from "../NormalCard/Name.astro";
-import Tagline from "../NormalCard/Tagline.astro";
-import Body from "../NormalCard/Body.astro";
-import Tip from "../NormalCard/Tip.astro";
+import Name from "./Name.astro";
+import Tagline from "./Tagline.astro";
+import Body from "./Body.astro";
+import Tip from "./Tip.astro";
 import Top from "../NormalCard/Top.astro";
-import Button from "../NormalCard/Button.astro";
-import Art from "../NormalCard/Art.astro";
+import Button from "./Button.astro";
+import Art from "./Art.astro";
 import ArtSection from "./ArtSection.astro";
-import Mark from "../NormalCard/Mark.astro";
-import Box from "../NormalCard/Box.astro";
-import BoxNumber from "../NormalCard/BoxNumber.astro";
+import Mark from "./Mark.astro";
+import Box from "./Box.astro";
+import BoxNumber from "./BoxNumber.astro";
 import BoxList from "./BoxList.astro";
+import More from "../../More.astro";
 
 export const components = {
   Name,
@@ -24,6 +25,7 @@ export const components = {
   BoxList,
   ArtSection,
   Top,
+  Card: More,
 };
 
 export default components;

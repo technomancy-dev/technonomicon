@@ -1,3 +1,7 @@
-<a href="#join-form" class="btn btn-accent w-full font-display">
+---
+const { href } = Astro.props;
+---
+
+<a href={href} class="btn z-10 btn-accent w-full font-display">
   <slot />
 </a>

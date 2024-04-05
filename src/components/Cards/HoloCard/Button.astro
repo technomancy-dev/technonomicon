@@ -1,0 +1,14 @@
+---
+const { href } = Astro.props;
+---
+
+<div class="holographic glass z-10 p-px rounded-lg">
+  <div class="bg-base-300/75 glass rounded-lg">
+    <a
+      href={href}
+      class="btn btn-ghost z-10 w-full font-display holographic-text"
+    >
+      <slot />
+    </a>
+  </div>
+</div>

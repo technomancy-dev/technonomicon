@@ -1,0 +1,26 @@
+---
+title: The Technonomicon is an Astro Theme meant for writing.
+description: Introducing the technonomicon.
+layout: ../../layouts/Article.astro
+issue_number: 1
+---
+
+import { getEntry } from "astro:content";
+import Card from "../../components/Cards/NormalCard/Card.astro"
+import CardHolo from "../../components/Cards/HoloCard/Card.astro"
+export const technonomicon = await getEntry(
+  "cards",
+  "technonomicon",
+);
+
+# {frontmatter.title}
+
+## Portable Content like never before.
+
+These two cards use the same file for content. They simply have a different wrapper, which because of the power of MDX has total control of how the elements are rendered.
+
+<div class="flex gap-2 flex-wrap [perspective:900px] overflow-visible">
+  <Card markdown={technonomicon} />
+
+  <CardHolo markdown={technonomicon} />
+</div>
