@@ -1,0 +1,55 @@
+---
+name: Technonomicon
+tagline: Astro Theme
+art: https://images.unsplash.com/photo-1561084746-f360502e5abe?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+mark: wow
+---
+
+import cm from "../../components/Cards/NormalCard/components";
+export const components = { ...cm }
+
+<ArtSection>
+  <Top>
+    <Name>
+      {frontmatter.name}
+    </Name>
+
+    <Tagline>
+      {frontmatter.tagline}
+    </Tagline>
+
+    <Mark>
+      {frontmatter.mark}
+    </Mark>
+  </Top>
+
+  <Art src={frontmatter.art} />
+
+  <Box>
+    <BoxNumber
+      number="$0"
+      frequency="forever"
+      sup="Free as in beer."
+      sub="The greatest theme for writing."
+    />
+
+    <BoxList>
+      - Pause whenever 
+      - Fast turn around
+      - Mysticland Included
+      - F*ck it, i'll write your copy
+    </BoxList>
+  </Box>
+</ArtSection>
+
+<Body>
+  Mysticland is your new website. A website is a 24/7 employee. Make sure
+  yours is a good one. The web has changed a lot, make sure your site is up
+  to date.
+</Body>
+
+<Tip>
+  Play this card to obtain a fast, modern website built to convert.
+</Tip>
+
+<Button>Join Now</Button>

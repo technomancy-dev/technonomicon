@@ -1,0 +1,13 @@
+---
+interface Props {
+  title: string;
+  frontmatter: any;
+}
+
+const { title, frontmatter } = Astro.props;
+console.log(Astro.props);
+---
+
+<div class="">
+  <slot />
+</div>

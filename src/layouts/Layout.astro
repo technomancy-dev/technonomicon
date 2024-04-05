@@ -27,6 +27,10 @@ const { title, frontmatter, issueSlug } = Astro.props;
       <slot />
     </div>
     <style is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+
       @font-face {
         font-family: "Young Serif";
         src: url("/fonts/YoungSerif-Regular.ttf") format("truetype");
@@ -40,6 +44,25 @@ const { title, frontmatter, issueSlug } = Astro.props;
         font-weight: normal;
         font-style: normal;
         font-display: swap;
+      }
+      @font-face {
+        font-family: "Basteleur Bold";
+        src: url("/fonts/Basteleur-Bold.woff2") format("woff2");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Basteleur Moonlight";
+        src: url("/fonts/Basteleur-Moonlight.woff2") format("woff2");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @layer utilities {
+        .holographic-text {
+          @apply text-xs align-sub -bottom-4 bg-gradient-to-r from-secondary via-white bg-300% to-accent from-50% to-75% text-transparent bg-clip-text animate-gradient;
+        }
       }
     </style>
   </body>

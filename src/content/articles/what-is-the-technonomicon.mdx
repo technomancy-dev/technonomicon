@@ -5,13 +5,30 @@ layout: ../../layouts/Article.astro
 issue_number: 1
 ---
 
+import { getEntry } from "astro:content";
+import Card from "../../components/Cards/NormalCard/Card.astro"
+import CardHolo from "../../components/Cards/HoloCard/Card.astro"
+export const technonomicon = await getEntry(
+  "cards",
+  "technonomicon",
+);
+
 # {frontmatter.title}
 
 <FancyParagraph>
-  Whether it be a course, blog, tabloid, manga, if you want to write a lot of content and publish it on the web the technonomicon is the way to do it. Somewhere along the way we all agreed a blog should look one particular way.
+  Whether it be a curse, blog, tabloid, manga, if you want to write a lot of content and publish it on the web the technonomicon is the way to do it. Somewhere along the way we all agreed a blog should look one particular way.
   <span class="group/tooltip relative">This<span class="text-accent">\*</span><span class="w-min text-sm -top-6 group-hover/tooltip:visible text-top invisible align-top bg-accent text-accent-content p-2 rounded absolute tracking-[-1px]">(largely because of the popularity of wordpress)</span></span>
   caused all of the web to look a certain way.
 </FancyParagraph>
+
+
+## Portable Content like never before. 
+
+These two cards use the same file for content. They simply have a different wrapper, which because of the power of MDX has total control of how the elements are rendered. 
+<div class="flex gap-2 [perspective:900px]">
+  <Card markdown={technonomicon} />
+  <CardHolo markdown={technonomicon} />
+</div>
 
 The way we landed on kindof sucks. So I made something else.
 

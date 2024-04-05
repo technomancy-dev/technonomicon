@@ -1,7 +1,5 @@
 ---
 const { markdown, class: className, href, components, cta } = Astro.props;
-markdown.body = markdown.body.split("").slice(0, 10).join("");
-
 const { Content } = await markdown.render();
 ---
 
