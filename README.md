@@ -41,6 +41,7 @@ Inside of your Book of the devs, you'll see the following folders and files:
 Astro (the magic which powers the technonomicon) looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
 There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+It has come pre-loaded with components to manipulate content, and create Cards.
 
 It has come pre-loaded with components to manipulate content, and create Cards.
 `Empty` and `More` are simple components used to negate, or pass on particular MDX components when remixing content. `Markdown` takes a markdown source and components and renders them. `ArticleTeaser.astro` grabs just the teaser info from an article. `Navigation.astro` is a navigation (duh).
