@@ -7,10 +7,10 @@ const { Content } = await markdown.render();
 <div
   transition:name={markdown.data.name}
   data-theme="skeletor"
-  class="shadow-xl not-prose rounded p-1 w-full max-w-md bg-neutral aspect-[63/88]"
+  class="shadow-xl relative not-prose rounded p-1 w-full max-w-md bg-neutral aspect-[63/88]"
 >
   <div
-    class="p-6 h-full flex flex-col justify-between bg-gradient-to-br from-base-200 from-30% to-95% via-base-100 to-base-300 bg-300% animate-gradient"
+    class="p-6 h-full flex flex-col justify-start bg-gradient-to-br from-base-200 from-30% to-95% via-base-100 to-base-300 bg-300% animate-gradient"
   >
     <Content
       components={{

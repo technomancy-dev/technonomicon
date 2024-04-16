@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import FancyParagraph from "../../components/FancyParagraph.astro";
+
 import More from "../../components/More.astro";
-import TableOfContents from "../../components/TableOfContents.astro";
+
 import components from "../../components/Cards/NormalCard/components";
 import Card from "../../components/Cards/NormalCard/Card.astro";
 import HoloCard from "../../components/Cards/HoloCard/Card.astro";
@@ -30,10 +30,7 @@ const CardToDisplay = entry.data.type === "tip" ? TipCard : Card;
   frontmatter={entry.data}
 >
   <div class="grid items-start grid-cols-12">
-    <div
-      transition:name={entry.data.title}
-      class="px-2 col-span-5 stack w-full md:px-10"
-    >
+    <div class="px-2 col-span-12 mx-auto stack w-full">
       <CardToDisplay markdown={entry} components={components} />
       {
         entry.data.type === "product" && (
@@ -41,7 +38,9 @@ const CardToDisplay = entry.data.type === "tip" ? TipCard : Card;
         )
       }
     </div>
-    <div class="prose col-span-7 sticky top-10 h-fit">
+    <div
+      class="prose col-span-12 mt-10 lg:mt-0 p-2 lg:col-span-7 sticky top-10 h-fit"
+    >
       <Content components={{ Card: Empty, More: More, Button: More }} />
     </div>
   </div>
