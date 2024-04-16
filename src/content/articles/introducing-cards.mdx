@@ -1,0 +1,41 @@
+---
+title: Cards to share tips and have fun.
+description: Introducing the cards.
+layout: ../../layouts/Article.astro
+issue_number: 1
+---
+
+import { getEntry } from "astro:content";
+import Card from "../../components/Cards/NormalCard/Card.astro"
+import CardHolo from "../../components/Cards/HoloFullArtCard/Card.astro"
+import TipCard from "../../components/Cards/TipCard/Card.astro"
+
+export const technonomiconCard = await getEntry(
+    "cards",
+    "technonomicon",
+);
+
+export const why_mdx_cards = await getEntry(
+    "cards",
+    "why-mdx-cards",
+);
+
+# {frontmatter.title}
+
+<p class="text-center holographic-text font-display mt-4 text-xl lg:text-4xl">Now with all new cards!</p>
+
+<div
+  class="flex flex-row-reverse gap-2 justify-center w-full my-12 flex-wrap [perspective:900px] overflow-visible"
+>
+  <CardHolo markdown={technonomiconCard} />
+
+  <Card markdown={technonomiconCard} />
+</div>
+
+<div class="prose">
+  These two cards use the same file for content. They simply have a different wrapper. A wrapper which has total control of how the elements are rendered, because of the power of MDX.
+</div>
+
+<More>
+  <TipCard markdown={why_mdx_cards} />
+</More>

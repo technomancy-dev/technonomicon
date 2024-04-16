@@ -61,7 +61,7 @@ const { title, frontmatter, issueSlug } = Astro.props;
       }
       @layer utilities {
         .holographic {
-          @apply bg-gradient-to-r from-secondary via-white bg-300% to-accent from-50% to-75% animate-gradient;
+          @apply transform-gpu bg-gradient-to-r from-secondary via-white bg-300% to-accent from-50% to-75% animate-gradient;
         }
         .holographic-text {
           @apply holographic text-transparent bg-clip-text;

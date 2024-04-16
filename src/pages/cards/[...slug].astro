@@ -30,7 +30,7 @@ const CardToDisplay = entry.data.type === "tip" ? TipCard : Card;
   frontmatter={entry.data}
 >
   <div class="grid items-start grid-cols-12">
-    <div class="px-2 col-span-12 mx-auto stack w-full">
+    <div class="px-2 col-span-12 xl:col-span-4 mx-auto stack w-full">
       <CardToDisplay markdown={entry} components={components} />
       {
         entry.data.type === "product" && (
