@@ -1,0 +1,6 @@
+---
+const { markdown, components } = Astro.props;
+const { Content } = await markdown.render();
+---
+
+<Content components={components} />

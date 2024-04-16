@@ -22,6 +22,10 @@ Inside of your Book of the devs, you'll see the following folders and files:
 │   │   ├── Cards/
 │   │   ├── Content/
 │   │   ├── Icons/
+│   │   ├── ArticleTeaser.astro
+│   │   ├── Empty.astro
+│   │   ├── Markdown.astro
+│   │   ├── More.astro
 │   │   └── Navigation.astro
 │   ├── layouts/
 │   │   ├── Article.astro
@@ -37,7 +41,9 @@ Inside of your Book of the devs, you'll see the following folders and files:
 Astro (the magic which powers the technonomicon) looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
 There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
 It has come pre-loaded with components to manipulate content, and create Cards.
+`Empty` and `More` are simple components used to negate, or pass on particular MDX components when remixing content. `Markdown` takes a markdown source and components and renders them. `ArticleTeaser.astro` grabs just the teaser info from an article. `Navigation.astro` is a navigation (duh).
 
 Any static assets, like images, can be placed in the `public/` directory.
 

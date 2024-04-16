@@ -10,7 +10,7 @@ import Mark from "./Mark.astro";
 import Box from "./Box.astro";
 import BoxNumber from "./BoxNumber.astro";
 import BoxList from "./BoxList.astro";
-import More from "../../Content/More.astro";
+import More from "../../More.astro";
 
 export const components = {
   Name,
