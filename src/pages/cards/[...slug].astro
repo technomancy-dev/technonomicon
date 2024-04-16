@@ -2,13 +2,13 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
-import More from "../../components/Content/More.astro";
+import More from "../../components/More.astro";
 
 import components from "../../components/Cards/NormalCard/components";
 import Card from "../../components/Cards/NormalCard/Card.astro";
 import HoloCard from "../../components/Cards/HoloFullArtCard/Card.astro";
 import TipCard from "../../components/Cards/TipCard/Card.astro";
-import Empty from "../../components/Content/Empty.astro";
+import Empty from "../../components/Empty.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("cards");
