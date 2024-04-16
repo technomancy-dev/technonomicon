@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import FancyParagraph from "../../components/FancyParagraph.astro";
-import More from "../../components/More.astro";
-import TableOfContents from "../../components/TableOfContents.astro";
+import FancyParagraph from "../../components/Content/FancyParagraph.astro";
+import More from "../../components/Content/More.astro";
+import TableOfContents from "../../components/Content/TableOfContents.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("articles");

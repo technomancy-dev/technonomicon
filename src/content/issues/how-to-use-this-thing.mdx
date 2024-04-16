@@ -5,8 +5,8 @@ issue_number: 2
 ---
 
 import { getEntry } from "astro:content";
-import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
-import FancyParagraph from "../../components/FancyParagraph.astro";
+import MarkdownSnippet from "../../components/Content/MarkdownSnippet.astro";
+import FancyParagraph from "../../components/Content/FancyParagraph.astro";
 export const what_are_issues = await getEntry(
     "articles",
     "what-are-issues",
