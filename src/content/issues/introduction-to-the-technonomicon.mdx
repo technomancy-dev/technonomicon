@@ -23,8 +23,11 @@ export const card_intro = await getEntry(
 export const quick_install = await getEntry("articles", "quick-install");
 
 <div
-  class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify overflow-clip"
+  class="grid grid-cols-12 gap-y-8 lg:gap-4 break-words hyphens-auto xl:gap-16 md:px-10 px-2 text-justify"
 >
+<div class="col-span-12 text-3xl lg:text-9xl font-display text-center text-balance">
+  # {frontmatter.title}
+  </div>
   <ArticleTeaser
     markdown={card_intro}
     components={{
@@ -38,17 +41,16 @@ export const quick_install = await getEntry("articles", "quick-install");
     cta="Read more about why I made this"
     title={card_intro.data.title}
   />
-
   <ArticleTeaser
     markdown={quick_install}
     components={{
-            h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/articles/${quick_install.slug}`}  {...props}/></h2>,
+            h1: (props) => <h2 class="text-primary text-5xl mt-0 text-left" ><a href={`/articles/${quick_install.slug}`}  {...props}/></h2>,
             a: (props) => <p {...props} />,
             More: Empty,
             FancyParagraph
         }}
     href={`/articles/${quick_install.slug}`}
-    class="lg:col-span-8 xl:col-span-4 row-span-2 prose-xl col-span-12"
+    class="lg:col-span-8 xl:col-span-4 lg:sticky top-10 self-start row-span-2 prose-xl col-span-12"
     cta="Read more about getting started"
     title={quick_install.data.title}
   />
