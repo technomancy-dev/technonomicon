@@ -15,7 +15,7 @@ export default {
         "300%": "300%",
       },
       animation: {
-        gradient: "animatedgradient 6s ease infinite alternate transform-gpu",
+        gradient: "animatedgradient 6s ease infinite alternate",
       },
       fontFamily: {
         serif: ["Basteleur Moonlight", ...defaultTheme.fontFamily.serif],
