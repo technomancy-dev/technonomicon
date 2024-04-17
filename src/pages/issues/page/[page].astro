@@ -71,7 +71,10 @@ const pageRange = arrayRange(1, page.lastPage, 1);
                   </span>
                 </div>
               </a>
-              <div class="block z-10 max-h-0 group-last:hidden group-hover:max-h-[50px] duration-1000 transition-all ease-in-out">
+              <div
+                transition:name={issue.data.title}
+                class="block z-10 max-h-0 group-last:hidden invisible group-hover:visible group-hover:max-h-[50px] duration-1000 transition-all ease-in-out"
+              >
                 <Component />
               </div>
               <div
