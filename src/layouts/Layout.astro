@@ -1,5 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import VtBotDebug from "astro-vtbot/components/VtBotDebug.astro";
+import Linter from "astro-vtbot/components/Linter.astro";
 import Navigation from "../components/Navigation.astro";
 interface Props {
   title: string;
@@ -19,6 +21,8 @@ const { title, frontmatter, issueSlug } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <VtBotDebug />
+    <Linter expanded />
     <ViewTransitions />
   </head>
   <body class="font-serif pb-16">
