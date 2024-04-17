@@ -1,11 +1,13 @@
 ---
 import Empty from "../../Empty.astro";
+import normal_components from "./components";
 const { markdown, class: className, href, components, cta } = Astro.props;
 const { Content } = await markdown.render();
+console.log(`${markdown.data.name}-card`);
 ---
 
 <div
-  transition:name={markdown.data.name}
+  transition:name={`${markdown.data.name}-card`}
   data-theme="skeletor"
   class="shadow-xl relative not-prose rounded p-1 w-full max-w-md bg-neutral aspect-[63/88]"
 >
@@ -14,6 +16,7 @@ const { Content } = await markdown.render();
   >
     <Content
       components={{
+        ...normal_components,
         ...components,
         More: Empty,
       }}

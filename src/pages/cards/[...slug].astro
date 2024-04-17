@@ -31,17 +31,15 @@ const CardToDisplay = entry.data.type === "tip" ? TipCard : Card;
 >
   <div class="grid items-start grid-cols-12">
     <div class="px-2 col-span-12 xl:col-span-4 mx-auto stack w-full">
-      <CardToDisplay markdown={entry} components={components} />
-      {
-        entry.data.type === "product" && (
-          <HoloCard markdown={entry} components={components} />
-        )
-      }
+      <CardToDisplay markdown={entry} />
+      {entry.data.type === "product" && <HoloCard markdown={entry} />}
     </div>
     <div
       class="prose col-span-12 mt-10 lg:mt-0 p-2 lg:col-span-7 sticky top-10 h-fit"
     >
-      <Content components={{ Card: Empty, More: More, Button: More }} />
+      <Content
+        components={{ ...components, Card: Empty, More: More, Button: More }}
+      />
     </div>
   </div>
 </Layout>
