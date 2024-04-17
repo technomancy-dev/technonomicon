@@ -29,7 +29,7 @@ const CardToDisplay = entry.data.type === "tip" ? TipCard : Card;
   title={entry.data.title}
   frontmatter={entry.data}
 >
-  <div class="grid items-start grid-cols-12">
+  <div class="grid items-start grid-cols-12 break-words hyphens-auto">
     <div class="px-2 col-span-12 xl:col-span-4 mx-auto stack w-full">
       <CardToDisplay markdown={entry} />
       {entry.data.type === "product" && <HoloCard markdown={entry} />}
