@@ -3,7 +3,7 @@ import Empty from "./Empty.astro";
 import MarkdownSnippet from "./Markdown.astro";
 import FancyParagraph from "./Content/FancyParagraph.astro";
 
-const { markdown, class: className, href, components, cta } = Astro.props;
+const { markdown, class: className, components, cta } = Astro.props;
 ---
 
 <div class={className}>
@@ -17,5 +17,8 @@ const { markdown, class: className, href, components, cta } = Astro.props;
       }}
     />
   </div>
-  <a href={href} class="btn btn-block btn-outline btn-primary">{cta}</a>
+  <a
+    href={`/articles/${markdown.slug}`}
+    class="btn btn-block btn-outline btn-primary">{cta}</a
+  >
 </div>
