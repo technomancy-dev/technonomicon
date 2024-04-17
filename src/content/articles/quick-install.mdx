@@ -27,52 +27,59 @@ It might do something simple like pull togther two articles and join them with a
   ```mdx
   ---
   title: Publish amazing content in a unique format.
-  description: An Astro theme for publishing content for humans to read. 
+  description: An Astro theme for publishing content for humans to read.
   issue_number: 1
   layout: "../../layouts/Issue.astro"
   ---
 
   import { getEntry } from "astro:content";
-  import AstroLogo from "../../components/AstroLogo.astro";
-  import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
+  import Empty from "../../components/Empty.astro"
+  import ArticleTeaser from "../../components/ArticleTeaser.astro";
+  import FancyParagraph from "../../components/Content/FancyParagraph.astro";
+  import TitleLink from "../../components/TitleLink.astro";
 
   export const technonomicon = await getEntry(
+  "articles",
+  "what-is-the-technonomicon",
+  );
+  export const card_intro = await getEntry(
     "articles",
-    "what-is-the-technonomicon",
+    "introducing-cards",
   );
   export const quick_install = await getEntry("articles", "quick-install");
 
+  export const components = {
+  h1: props => <h1 class="col-span-12 text-3xl lg:text-9xl font-display text-center text-balance" {...props} />
+  }
 
+  # {frontmatter.title}
 
-  <div class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify">
-    <div class="col-span-10 text-9xl text-left">
-      # {frontmatter.title}
-    </div>
-    <div class="col-span-2">
-      <AstroLogo />
-    </div>
-    <MarkdownSnippet
-      markdown={quick_install}
-      components={{    
-        h1: (props) => <h2 {...props} />,
-        a: (props) => <p {...props} />,
-      }}
-      href={`/articles/${quick_install.slug}`}
-      class="lg:col-span-6 xl:col-span-8 prose-xl col-span-12"
-      cta="Read more about getting started."
-      title={quick_install.data.title}
-    />
-    <MarkdownSnippet
-      markdown={technonomicon}
-      components={{
-        h1: (props) => <h2 {...props} />,
-        a: (props) => <p {...props} />,
-      }}
-      href={`/articles/${technonomicon.slug}`}
-      class="lg:col-span-8 xl:col-span-4 prose-xl row-span-2 col-span-12"
-      cta="Read more about why I made this."
-      title={technonomicon.data.title}
-    />
-  </div>
+  <ArticleTeaser
+  components={{ h1: props => <TitleLink slug={card_intro.slug} {...props} />}}
+  markdown={card_intro}
+  href={`/articles/${card_intro.slug}`}
+  class="prose prose-xl xl:col-span-8 col-span-12"
+  cta="Read more about why I made this"
+  title={card_intro.data.title}
+  />
+
+  <ArticleTeaser
+  components={{ h1: props => <TitleLink slug={quick_install.slug} {...props} />}}
+  markdown={quick_install}
+  href={`/articles/${quick_install.slug}`}
+  class="lg:col-span-8 xl:col-span-4 lg:sticky top-10 self-start row-span-2 prose-xl col-span-12"
+  cta="Read more about getting started"
+  title={quick_install.data.title}
+  />
+
+  <ArticleTeaser
+  components={{ h1: props => <TitleLink slug={technonomicon.slug} {...props} />}}
+  markdown={technonomicon}
+  href={`/articles/${technonomicon.slug}`}
+  class="prose prose-xl xl:col-span-8 col-span-12"
+  cta="Read more about why I made this"
+  title={technonomicon.data.title}
+  />
+
   ```
 </More>

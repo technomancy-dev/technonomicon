@@ -1,7 +1,8 @@
 ---
 import Empty from "./Empty.astro";
 import MarkdownSnippet from "./Markdown.astro";
-import TitleLink from "./TitleLink.astro";
+import FancyParagraph from "./Content/FancyParagraph.astro";
+
 const { markdown, class: className, href, components, cta } = Astro.props;
 ---
 
@@ -12,6 +13,7 @@ const { markdown, class: className, href, components, cta } = Astro.props;
       components={{
         ...components,
         More: Empty,
+        FancyParagraph: FancyParagraph,
       }}
     />
   </div>

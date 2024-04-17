@@ -20,19 +20,16 @@ This component is used when you want to render the article directly, instead of 
 
 ```mdx
 import { getEntry } from "astro:content";
-import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
+import ArticleTeaser from "../../components/ArticleTeaser.astro";
 export const article = await getEntry(
     "articles",
     "article",
 );
-<MarkdownSnippet
+<ArticleTeaser
     markdown={article}
     components={{    
         {/* Components to override or add */}
     }}
-    href={`/articles/${article.slug}`}
-    class="lg:col-span-6 prose-xl col-span-12"
-    cta="Read more about getting started"
-    title={article.data.title}
+    cta="Read more about getting started"    
 />
 ```

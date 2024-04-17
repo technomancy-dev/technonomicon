@@ -7,7 +7,7 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
   const blogEntries = await getCollection("issues");
   return paginate(
     blogEntries.sort((a, b) => a.data.issue_number - b.data.issue_number),
-    { pageSize: 1 },
+    { pageSize: 5 },
   );
 }
 

@@ -6,9 +6,6 @@ issue_number: 1
 ---
 
 import { getEntry } from "astro:content";
-import Card from "../../components/Cards/NormalCard/Card.astro"
-import CardHolo from "../../components/Cards/HoloFullArtCard/Card.astro"
-import FancyParagraph from "../../components/Content/FancyParagraph.astro";
 
 export const technonomicon = await getEntry(
   "cards",
@@ -27,7 +24,7 @@ caused all of the web to look a certain way.
 
 The way we landed on kindof sucks. So I made something else.
 
-[The technonomicon is a a made-up language written out in living glyphs lifted
+> [The technonomicon is a a made-up language written out in living glyphs lifted
 from demonic literature and religious text](https://genius.com/9159582)
 
 Ok, maybe that is a bit dramtic, but I do think it is pretty cool, and it was inspired by various forms of print media, and early ideas about how the internet should work.

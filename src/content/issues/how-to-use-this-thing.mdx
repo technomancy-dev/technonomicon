@@ -2,12 +2,19 @@
 title: This is a Digital Garden, so you will need some gardening tools.
 description: Robots are fucking us2.
 issue_number: 2
+layout: "../../layouts/Issue.astro"
 ---
 
 import { getEntry } from "astro:content";
-import MarkdownSnippet from "../../components/ArticleTeaser.astro";
+import ArticleTeaser from "../../components/ArticleTeaser.astro";
 import FancyParagraph from "../../components/Content/FancyParagraph.astro";
 import Empty from "../../components/Empty.astro";
+import TitleLink from "../../components/TitleLink.astro";
+
+export const components = {
+  h1: props => <h1 class="col-span-12 text-6xl text-left" {...props} />
+}
+
 export const what_are_issues = await getEntry(
     "articles",
     "what-are-issues",
@@ -18,38 +25,18 @@ export const what_are_articles = await getEntry(
     "what-are-articles",
 );
 
-<div
-  class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify"
->
-  <div class="col-span-12 text-6xl text-left">
-    # {frontmatter.title}
-  </div>
+# {frontmatter.title}
 
-  <MarkdownSnippet
-    markdown={what_are_issues}
-    components={{    
-            h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/articles/${what_are_issues.slug}`}  {...props}/></h2>,
-            a: (props) => <p {...props} />,
-            More: Empty,
-            FancyParagraph
-        }}
-    href={`/articles/${what_are_issues.slug}`}
-    class="lg:col-span-6 prose-xl col-span-12"
-    cta="Read more about getting started"
-    title={what_are_issues.data.title}
-  />
+<ArticleTeaser
+  markdown={what_are_issues}
+  components={{ h1: props => <TitleLink slug={what_are_issues.slug} {...props} />}}
+  class="lg:col-span-6 prose-xl col-span-12"
+  cta="Read more about Issues"
+/>
 
-  <MarkdownSnippet
-    markdown={what_are_articles}
-    components={{    
-        h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/articles/${what_are_articles.slug}`}  {...props}/></h2>,
-        a: (props) => <p {...props} />,
-        More: Empty,
-        FancyParagraph
-    }}
-    href={`/articles/${what_are_articles.slug}`}
-    class="lg:col-span-6 prose-xl col-span-12"
-    cta="Read more about getting started"
-    title={what_are_articles.data.title}
-  />
-</div>
+<ArticleTeaser
+  markdown={what_are_articles}
+  components={{ h1: props => <TitleLink slug={what_are_articles.slug} {...props} />}}
+  class="lg:col-span-6 prose-xl col-span-12"
+  cta="Read more about Articles"
+/>
