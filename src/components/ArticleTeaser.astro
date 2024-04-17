@@ -1,11 +1,19 @@
 ---
+import Empty from "./Empty.astro";
 import MarkdownSnippet from "./Markdown.astro";
+import TitleLink from "./TitleLink.astro";
 const { markdown, class: className, href, components, cta } = Astro.props;
 ---
 
 <div class={className}>
   <div transition:name={markdown.data.title}>
-    <MarkdownSnippet markdown={markdown} components={components} />
+    <MarkdownSnippet
+      markdown={markdown}
+      components={{
+        ...components,
+        More: Empty,
+      }}
+    />
   </div>
   <a href={href} class="btn btn-block btn-outline btn-primary">{cta}</a>
 </div>

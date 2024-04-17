@@ -1,0 +1,7 @@
+---
+const { slug } = Astro.props;
+---
+
+<h2 class="text-primary font-display mt-0 text-6xl text-left">
+  <a class="text-primary underline" href={`/articles/${slug}`}><slot /></a>
+</h2>

@@ -6,9 +6,9 @@ issue_number: 1
 
 import { getEntry } from "astro:content";
 import Empty from "../../components/Empty.astro"
-
 import ArticleTeaser from "../../components/ArticleTeaser.astro";
 import FancyParagraph from "../../components/Content/FancyParagraph.astro";
+import TitleLink from "../../components/TitleLink.astro";
 
 export const technonomicon = await getEntry(
   "articles",
@@ -25,30 +25,24 @@ export const quick_install = await getEntry("articles", "quick-install");
 <div
   class="grid grid-cols-12 gap-y-8 lg:gap-4 break-words hyphens-auto xl:gap-16 md:px-10 px-2 text-justify"
 >
-<div class="col-span-12 text-3xl lg:text-9xl font-display text-center text-balance">
-  # {frontmatter.title}
+  <div
+    class="col-span-12 text-3xl lg:text-9xl font-display text-center text-balance"
+  >
+    # {frontmatter.title}
   </div>
+
   <ArticleTeaser
+    components={{ h1: props => <TitleLink slug={card_intro.slug} {...props} />}}
     markdown={card_intro}
-    components={{
-            h1: (props) => <h2 class="text-primary font-display mt-0 text-6xl text-left" ><a class="text-primary" href={`/articles/${card_intro.slug}`}  {...props}/></h2>,
-            a: props => <div class="border-l text-sm pl-2 border-secondary"><a target="_blank" class="text-secondary leading-3" {...props} /></div>,
-            More: Empty,
-            FancyParagraph
-        }}
     href={`/articles/${card_intro.slug}`}
     class="prose prose-xl xl:col-span-8 col-span-12"
     cta="Read more about why I made this"
     title={card_intro.data.title}
   />
+
   <ArticleTeaser
+    components={{ h1: props => <TitleLink slug={quick_install.slug} {...props} />}}
     markdown={quick_install}
-    components={{
-            h1: (props) => <h2 class="text-primary text-5xl mt-0 text-left" ><a href={`/articles/${quick_install.slug}`}  {...props}/></h2>,
-            a: (props) => <p {...props} />,
-            More: Empty,
-            FancyParagraph
-        }}
     href={`/articles/${quick_install.slug}`}
     class="lg:col-span-8 xl:col-span-4 lg:sticky top-10 self-start row-span-2 prose-xl col-span-12"
     cta="Read more about getting started"
@@ -56,13 +50,8 @@ export const quick_install = await getEntry("articles", "quick-install");
   />
 
   <ArticleTeaser
+    components={{ h1: props => <TitleLink slug={technonomicon.slug} {...props} />}}
     markdown={technonomicon}
-    components={{
-      h1: (props) => <h2 class="text-primary font-display mt-0 text-6xl text-left" ><a class="text-primary" href={`/articles/${technonomicon.slug}`}  {...props}/></h2>,
-      a: props => <div class="border-l text-sm pl-2 border-secondary"><a target="_blank" class="text-secondary leading-3" {...props} /></div>,
-      More: Empty,
-      FancyParagraph
-    }}
     href={`/articles/${technonomicon.slug}`}
     class="prose prose-xl xl:col-span-8 col-span-12"
     cta="Read more about why I made this"
