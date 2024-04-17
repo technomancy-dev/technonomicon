@@ -1,0 +1,13 @@
+---
+const { message, word } = Astro.props;
+---
+
+<span class="group/tooltip relative inline">
+  {word}<span class="text-accent">*</span>
+  <span
+    class="w-min text-sm -top-6 group-hover/tooltip:visible font-display text-top invisible align-top bg-accent text-accent-content p-2 rounded absolute"
+  >
+    {message}
+    <slot />
+  </span>
+</span>

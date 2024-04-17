@@ -6,7 +6,7 @@ import FancyParagraph from "./Content/FancyParagraph.astro";
 const { markdown, class: className, components, cta } = Astro.props;
 ---
 
-<div class={className}>
+<div class:list={[className, "prose prose-xl"]}>
   <div transition:name={markdown.data.title}>
     <MarkdownSnippet
       markdown={markdown}

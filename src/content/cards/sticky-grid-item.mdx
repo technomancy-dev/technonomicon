@@ -1,0 +1,26 @@
+---
+name: Sticky Grid Item
+type: tip
+---
+
+<Card>
+  <div>
+    # {frontmatter.name}
+
+    If you want to make a grid item sticky, you need to `align-self: start`.
+
+    Grid items have a default attribute for `align-items` to `stretch`, meaning all children have the same height. you can avoid this by setting `align-items: start;`
+  </div>
+
+  <div class="grid grid-cols-2 h-40">
+    <div class="bg-error text-error-content text-center">Default</div>
+
+    <div class="bg-success text-success-content text-center self-start">Self Start</div>
+  </div>
+
+  <Button href="/cards/sticky-grid-item">Read more about this.</Button>
+</Card>
+
+<More>
+  [Learned from stackoverflow](https://stackoverflow.com/questions/50794795/sticky-position-on-css-grid-items)
+</More>

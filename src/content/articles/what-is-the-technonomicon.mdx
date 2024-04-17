@@ -6,6 +6,7 @@ issue_number: 1
 ---
 
 import { getEntry } from "astro:content";
+import Asterisk from "../../components/Content/Asterisk.astro"
 
 export const technonomicon = await getEntry(
   "cards",
@@ -18,14 +19,10 @@ export const technonomicon = await getEntry(
   Whether it be a curse, blog, tabloid, manga, if you want to write a lot of content and publish it on the web the technonomicon is the way to do it.
 </FancyParagraph>
 
-Somewhere along the way we all agreed a blog should look one particular way.
-<span class="group/tooltip relative">This<span class="text-accent">\*</span><span class="w-min text-sm -top-6 group-hover/tooltip:visible text-top invisible align-top bg-accent text-accent-content p-2 rounded absolute tracking-[-1px]">(largely because of the popularity of wordpress)</span></span>
-caused all of the web to look a certain way.
-
-The way we landed on kindof sucks. So I made something else.
+Somewhere along the way we all agreed a blog should look one particular way. <Asterisk word="This">(largely because of the popularity of wordpress)</Asterisk> caused all of the web to take a similar shape. And that way kindof sucks. So I made something else.
 
 > [The technonomicon is a a made-up language written out in living glyphs lifted
-from demonic literature and religious text](https://genius.com/9159582)
+> from demonic literature and religious text](https://genius.com/9159582)
 
 Ok, maybe that is a bit dramtic, but I do think it is pretty cool, and it was inspired by various forms of print media, and early ideas about how the internet should work.
 
