@@ -28,7 +28,7 @@ const issue = await getCollection("issues", ({ data }) => {
   <div class="grid grid-cols-12 break-words hyphens-auto">
     <div
       transition:name={entry.data.title}
-      class="px-2 order-2 col-span-12 lg:col-span-9 prose prose-xl md:px-10"
+      class="px-2 lg:order-1 order-2 col-span-12 lg:col-span-9 prose prose-xl md:px-10"
     >
       <Content components={{ More: More, FancyParagraph }} />
     </div>
