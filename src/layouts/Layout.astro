@@ -25,7 +25,7 @@ const { title, frontmatter, issueSlug } = Astro.props;
     <Linter expanded />
     <ViewTransitions />
   </head>
-  <body class="font-serif pb-16">
+  <body class="font-serif pb-16 max-w-screen-2xl mx-auto">
     <Navigation issue_slug={issueSlug} issue={frontmatter?.issue_number} />
     <div transition:animate="fade">
       <slot />
